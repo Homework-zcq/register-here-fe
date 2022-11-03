@@ -1,0 +1,9 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "register-here-fe",
+  "appid": "testAppId",
+  "setting": {
+    "es6": false,
+    "minified": false
+  }
+}
