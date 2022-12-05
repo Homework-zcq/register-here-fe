@@ -1,3 +1,5 @@
+import { resolve } from 'path';
+
 const config = {
   projectName: 'register-here-fe',
   date: '2022-11-3',
@@ -71,10 +73,13 @@ const config = {
         enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
       }
     }
+  },
+  alias: {
+    '@/components': resolve(__dirname, '..', 'src/components'),
   }
 }
 
-module.exports = function (merge) {
+export default function (merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }

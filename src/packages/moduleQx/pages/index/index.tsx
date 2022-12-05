@@ -1,6 +1,5 @@
 import { Component, PropsWithChildren } from "react";
 import { View, Text } from "@tarojs/components";
-import { Test } from "@/components";
 import "./index.less";
 import "./index.scss";
 
@@ -18,8 +17,7 @@ export default class Index extends Component<PropsWithChildren> {
   render() {
     return (
       <View className='index'>
-        <Text className='test'>Hello world!</Text>
-        <Test />
+        <Text className='test'>这是sub page</Text>
       </View>
     );
   }

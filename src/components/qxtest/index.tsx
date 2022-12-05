@@ -1,11 +1,20 @@
 import React from "react";
-import { View, Text } from "@tarojs/components";
+import Taro from "@tarojs/taro";
+import { View, Text, Button } from "@tarojs/components";
 import "./index.less";
 
-export const Test: React.FC = () => {
+const Test: React.FC = () => {
+  const test = () => {
+    Taro.navigateTo({
+      url: "/packages/moduleQx/pages/index/index",
+    });     
+  }
+
   return (
-    <View>
-      <Text>Hello qx</Text>
+    <View className='view-highlight'>
+      <Button onClick={test}>to module</Button>
     </View>
   );
 };
+
+export default Test;
