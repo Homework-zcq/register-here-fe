@@ -2,12 +2,19 @@ export default defineAppConfig({
   pages: [
     "pages/home/index",
     "pages/register/index",
-    "pages/my/index",
+    "pages/mine/index",
   ],
   subPackages: [
     {
-      // 测试
-      root: "packages/moduleQx",
+      // 挂号
+      root: "packages/register",
+      pages: [
+        "pages/index/index",
+      ],
+    },
+    {
+      // 我的
+      root: "packages/mine",
       pages: [
         "pages/index/index",
       ],
@@ -37,7 +44,7 @@ export default defineAppConfig({
         selectedIconPath: 'assets/register_select.png'
       },
       {
-        pagePath: 'pages/my/index',
+        pagePath: 'pages/mine/index',
         text: '我的',
         iconPath: 'assets/my.png',
         selectedIconPath: 'assets/my_select.png'

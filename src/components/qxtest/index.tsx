@@ -6,7 +6,7 @@ import "./index.less";
 const Test: React.FC = () => {
   const test = () => {
     Taro.navigateTo({
-      url: "/packages/moduleQx/pages/index/index",
+      url: "/packages/mine/pages/index/index",
     });     
   }
 
