@@ -1,3 +1,164 @@
-.test {
-  color: blue !important;
+@import "@/services/common.scss";
+
+@mixin apple-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: Apple SD Gothic Neo-Bold, Apple SD Gothic Neo;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+@mixin pingfang-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: PingFang SC-Semibold, PingFang SC;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+.index {
+  @include gray-back();
+  @include flex(column, flex-start, nowrap);
+  align-items: center;
+
+  .welcome-bar {
+    @include flex(row, space-between, nowrap);
+    align-items: center;
+    width: 100%;
+    height: 88px;
+    box-sizing: border-box;
+    padding-left: 60px;
+    padding-right: 60px;
+
+    .welcome-font {
+      @include apple-font(#030303, 50px, bold);
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 100px;
+    }
+  }
+
+  .register-hint-bar {
+    @include flex(row, flex-start, nowrap);
+    align-items: center;
+    width: 94%;
+    height: 100px;
+    padding-left: 40px;
+    padding-right: 68px;
+    margin-top: 56px;
+    box-sizing: border-box;
+    background-color: #c8dbff;
+    border-radius: 20px;
+
+    .register-hint-img {
+      width: 132px;
+      height: 180px;
+      margin-top: -78px;
+      margin-right: 22px;
+    }
+
+    .register-hint-font {
+      @include pingfang-font(#5c8dee, 40px, 600);
+    }
+  }
+
+  .ad-box {
+    width: 94%;
+    height: 298px;
+    @include flex(row, flex-start, nowrap);
+    background-color: #1f293d;
+    border-radius: 40px;
+    box-sizing: border-box;
+    margin-top: 32px;
+
+    .ad-font {
+      @include pingfang-font(#fff, 90px, 600);
+      margin-top: 78px;
+      margin-left: 38px;
+    }
+
+    .ad-img {
+      width: 366px;
+      height: 260px;
+      margin-top: 45px;
+    }
+  }
+
+  .recommend-box {
+    @include flex(column, flex-start, nowrap);
+    width: 94%;
+    height: 448px;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    background: #FFF;
+    border-radius: 40px;
+    margin-top: 42px;
+
+    .recommend-title-box {
+      @include flex(row, space-between, nowrap);
+      align-items: center;
+      width: 100%;
+      margin-bottom: 20px;
+
+      .recommend-title-header {
+        @include pingfang-font(#000, 40px, 600);
+      }
+
+      .recommend-hint {
+        @include apple-font(#5c8dee, 28px, bold);
+      }
+    }
+
+    .recommend-little-box {
+      width: 100%;
+      height: 78px;
+      padding-left: 18px;
+      box-sizing: border-box;
+      background: #eef4ff;
+      border: 2px solid #C8DBFF;
+      border-radius: 12px;
+      @include flex(row, flex-start, nowrap);
+      align-items: center;
+      margin-bottom: 22px;
+
+      .recommend-icon {
+        width: 68px;
+        height: 68px;
+      }
+
+      .recommend-font {
+        @include pingfang-font(#000, 30px, 300);
+      }
+    }
+  }
+
+  .ask-box {
+    width: 94%;
+    height: 260px;
+    border-radius: 40px;
+    background-color: #5C8DEE;
+    margin-top: 54px;
+    @include flex(column, flex-start, wrap);
+
+    .ask-img {
+      width: 336px;
+      height: 458px;
+      margin-bottom: -84px;
+      margin-top: -116px;
+      margin-right: 14px;
+    }
+
+    .ask-header {
+      @include apple-font(#FFF, 70px, bold);
+      margin-top: 46px;
+    }
+
+    .ask-hint {
+      @include apple-font(#FFF, 24px, 400);
+      margin-top: 32px;
+    }
+  }
 }

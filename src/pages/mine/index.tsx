@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { UserInfo } from "@/services/types";
 import register from "@/assets/img/register.png";
 import ask from "@/assets/img/ask.png";
+import Taro from "@tarojs/taro";
 import "./index.scss";
 
 export default function Mine() {
@@ -13,12 +14,13 @@ export default function Mine() {
     createdAt: "2020-02-24",
     updatedAt: "2020-12-13",
     name: "Avril",
-    avatar: {default_avatar},
+    avatar: default_avatar,
     role: "Expert",
   });
 
   useEffect(() => {
     console.log("======userInfo: ",userInfo)
+    Taro.setStorageSync("user", userInfo)
   },[])
 
   return (
