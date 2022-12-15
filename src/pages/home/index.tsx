@@ -8,6 +8,7 @@ import gold from "@/assets/icon/gold.png";
 import silver from "@/assets/icon/silver.png";
 import bronze from "@/assets/icon/bronze.png";
 import ask from "@/assets/img/home_ask.png";
+import ua from "@/assets/img/avatar_unlogged.png";
 import "./index.scss";
 
 export default function Home() {
@@ -25,7 +26,15 @@ export default function Home() {
 
   useDidShow(() => {
     console.log("=====register", registerInfo);
-    setAvatar(Taro.getStorageSync("user").avatar);
+    // 获取用户信息，存头像字段
+    try {
+      const user = Taro.getStorageSync("user");
+      if(user.avatar != null) {
+        setAvatar(user.avatar);
+      }
+    } catch(err) {
+      console.log("====err", err)
+    }
     const hour = new Date().getHours();
     // 设置欢迎导语
     switch (true) {
@@ -92,8 +101,7 @@ export default function Home() {
       {/* 欢迎栏 */}
       <View className='welcome-bar'>
         <Text className='welcome-font'>{welcome}</Text>
-        {avatar && <Image src={avatar} className='avatar' />}
-        {!avatar && <View className='avatar'></View>}
+        <Image src={avatar === ""? gold : avatar} className='avatar' />
       </View>
       {/* 预约栏 */}
       {registerInfo != null && (
