@@ -8,7 +8,6 @@ import gold from "@/assets/icon/gold.png";
 import silver from "@/assets/icon/silver.png";
 import bronze from "@/assets/icon/bronze.png";
 import ask from "@/assets/img/home_ask.png";
-import ua from "@/assets/img/avatar_unlogged.png";
 import "./index.scss";
 
 export default function Home() {
@@ -25,7 +24,6 @@ export default function Home() {
   const [doctorList, setDoctorList] = useState<Array<DoctorInfo> | null>(null);
 
   useDidShow(() => {
-    console.log("=====register", registerInfo);
     // 获取用户信息，存头像字段
     try {
       const user = Taro.getStorageSync("user");
@@ -49,8 +47,10 @@ export default function Home() {
     if (
       new Date().getFullYear() === Number(registerInfo?.date.slice(0, 4)) &&
       new Date().getMonth() + 1 === Number(registerInfo?.date.slice(5, 7)) &&
-      -new Date().getDate() + Number(registerInfo?.date.slice(8, 10)) <= 1
+      -new Date().getDate() + Number(registerInfo?.date.slice(8, 10)) <= 1 &&
+      -new Date().getDate() + Number(registerInfo?.date.slice(8, 10)) >= 0
     ) {
+      console.log(1)
       switch (-new Date().getDate() + Number(registerInfo?.date.slice(8, 10))) {
         case 0:
           setRegister("您在今日" + registerInfo?.timePart + "有预约 >");
@@ -59,9 +59,13 @@ export default function Home() {
           setRegister("您在明日" + registerInfo?.timePart + "有预约 >");
           break;
       }
-    } else {
+    } else if (
+      new Date().getFullYear() === Number(registerInfo?.date.slice(0, 4)) &&
+      new Date().getMonth() + 1 === Number(registerInfo?.date.slice(5, 7)) &&
+      -new Date().getDate() + Number(registerInfo?.date.slice(8, 10)) > 1
+    ) {
       setRegister(
-        "您在" + registerInfo?.date + registerInfo?.timePart + "有预约 >"
+        "您在" + registerInfo?.date.slice(5) + registerInfo?.timePart + "有预约 >"
       );
     }
     // 设置热门医生
@@ -101,10 +105,10 @@ export default function Home() {
       {/* 欢迎栏 */}
       <View className='welcome-bar'>
         <Text className='welcome-font'>{welcome}</Text>
-        <Image src={avatar === ""? gold : avatar} className='avatar' />
+        {avatar && <Image src={avatar} className='avatar' />}
       </View>
       {/* 预约栏 */}
-      {registerInfo != null && (
+      {register != "" && (
         <View className='register-hint-bar'>
           <Image src={hint} className='register-hint-img' />
           <Text className='register-hint-font'>{register}</Text>

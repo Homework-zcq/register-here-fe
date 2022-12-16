@@ -2,28 +2,26 @@ import { View, Text, Image } from "@tarojs/components";
 import default_avatar from "@/assets/img/avatar.png";
 import unlogged_avatar from "@/assets/img/avatar_unlogged.png";
 import doctor from "@/assets/img/doctor.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserInfo } from "@/services/types";
 import register from "@/assets/img/register.png";
 import ask from "@/assets/img/ask.png";
-import Taro from "@tarojs/taro";
+import Taro, { useDidShow } from "@tarojs/taro";
 import "./index.scss";
 
 export default function Mine() {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
-  useEffect(() => {
-    console.log("======userInfo: ", userInfo);
-    // setUserInfo({
-    //   id: "Ex20200132an",
-    //   createdAt: "2020-02-24",
-    //   updatedAt: "2020-12-13",
-    //   name: "Avril",
-    //   avatar: default_avatar,
-    //   role: "Expert",
-    // });
-    // Taro.setStorageSync("user", userInfo);
-  }, []);
+  useDidShow(() => {
+    Taro.getStorage({
+      key: 'user',
+      success: function(res) {
+        if(res.data) {
+          setUserInfo(res.data);
+        }
+      }
+    })
+  });
 
   return (
     <View className='index'>
@@ -83,6 +81,7 @@ export default function Mine() {
           </View>
         </>
       )}
+      {/* 未登录 */}
       {userInfo === null && (
         <>
           <View className='inf-box'>
@@ -92,8 +91,15 @@ export default function Mine() {
               <Text className='inf-detail-header'>Hi, 你好～</Text>
             </View>
             {/* role */}
-
-            <View className='role-box'>
+            <View
+              className='role-box'
+              onClick={() =>
+                {
+                  console.log(111)
+                  Taro.navigateTo({ url: "/packages/login/pages/log/index" })
+                }
+              }
+            >
               <Text className='role-header'>未登录</Text>
               <Text className='role-font'>{"点击去登录>>"}</Text>
             </View>

@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #F5F5F5;
+
+  .icon {
+    width: 200px;
+    height: 200px;
+    margin-top: 80px;
+  }
+
+  .input_box {
+    width: 100%;
+    height: 220px;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-sizing: border-box;
+    background-color: #FFF;
+    margin-top: -240px;
+    border-radius: 40px;
+    
+    .input_little_box {
+      width: 100%;
+      height: 110px;
+      border-bottom: 1px solid rgb(236, 236, 236);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .input {
+        font-size: 34px;
+        color: #000;
+      }
+    }
+  }
+
+  .btn_group {
+    width: 100%;
+    margin-top: -260px;
+
+    .weapp_login {
+      width: 100%;
+      height: 88px;
+      background: #07c160;
+      border-radius: 94px;
+      color: #fff;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      .weapp {
+        width: 48px;
+        height: 48px;
+        margin-right: 16px;
+      }
+    }
+    .phone_login {
+      width: 100%;
+      height: 88px;
+      margin-top: 48px;
+      border-radius: 60px;
+      border: 1px solid #dcdcdc;
+    }
+  }
+  .footer {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    font-size: 28px;
+    font-family: PingFang SC-Medium, PingFang SC;
+    font-weight: 500;
+    .read_btn {
+      width: 36px;
+      height: 36px;
+      margin-right: 16px;
+    }
+    .gray_text {
+      color: #868a93;
+    }
+    .blue_text {
+      color: #317cf4;
+    }
+  }
+}

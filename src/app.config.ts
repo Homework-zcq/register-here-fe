@@ -6,6 +6,13 @@ export default defineAppConfig({
   ],
   subPackages: [
     {
+      // 登录
+      root: "packages/login",
+      pages: [
+        "pages/log/index",
+      ]
+    },
+    {
       // 挂号
       root: "packages/register",
       pages: [
