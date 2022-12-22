@@ -26,6 +26,13 @@ export default defineAppConfig({
         "pages/index/index",
       ],
     },
+    {
+      // 选择医生
+      root: "packages/doctorSelect",
+      pages: [
+        "pages/index/index",
+      ],
+    },
   ],
   window: {
     backgroundTextStyle: "light",
