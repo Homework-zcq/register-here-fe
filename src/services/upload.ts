@@ -1,0 +1,1 @@
+export const uploadUrl = "https://strapi-production-239f.up.railway.app/api/upload"

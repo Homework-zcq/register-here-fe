@@ -23,7 +23,7 @@ export default defineAppConfig({
       // 我的
       root: "packages/mine",
       pages: [
-        "pages/index/index",
+        "pages/myCollection/index",
       ],
     },
     {

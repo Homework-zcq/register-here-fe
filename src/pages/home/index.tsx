@@ -25,14 +25,14 @@ export default function Home() {
 
   useDidShow(() => {
     // 获取用户信息，存头像字段
-    try {
-      const user = Taro.getStorageSync("user");
-      if(user.avatar != null) {
-        setAvatar(user.avatar);
-      }
-    } catch(err) {
-      console.log("====err", err)
-    }
+    Taro.getStorage({
+      key: "user",
+      success: function (res) {
+        if (res.data) {
+          setAvatar(res.data.avatar);
+        }
+      },
+    });
     const hour = new Date().getHours();
     // 设置欢迎导语
     switch (true) {

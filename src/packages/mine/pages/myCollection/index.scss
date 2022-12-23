@@ -1,0 +1,118 @@
+@import "@/services/common.scss";
+
+@mixin pingfang-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: PingFang SC-Semibold, PingFang SC;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+.index {
+  @include gray-back();
+  @include flex(column, flex-start);
+  background-color: #fff;
+  align-items: center;
+
+  .nav-box {
+    @include flex(row, space-between);
+    width: 100%;
+    height: 60px;
+    padding-left: 118px;
+    padding-right: 118px;
+    box-sizing: border-box;
+    margin-top: 20px;
+
+    .nav-choosed {
+      height: 100%;
+      @include pingfang-font(#000, 32px, 600);
+      border-bottom: 4px solid #000;
+    }
+
+    .nav-unchoosed {
+      @include pingfang-font(#aaa, 32px, 600);
+    }
+  }
+
+  .doctor-box {
+    width: 680px;
+    height: 160px;
+    @include flex(column, flex-start, wrap);
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: #eef4ff;
+    margin-top: 50px;
+    border-radius: 20px;
+
+    .doctor-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 100px;
+      margin-right: 40px;
+    }
+
+    .doctor-name {
+      @include pingfang-font(#333, 32px, 600);
+      margin-bottom: 10px;
+    }
+
+    .doctor-intro {
+      @include pingfang-font(#333, 32px, 400);
+      max-width: 480px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .hspt-box {
+    @include flex(column, flex-start, wrap);
+    width: 680px;
+    height: 248px;
+    margin-top: 50px;
+    background-color: #eef4ff;
+    border-radius: 20px;
+
+    .hspt-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 100px;
+      margin-top: 20px;
+      margin-left: 40px;
+      margin-bottom: 40px;
+      margin-right: 40px;
+    }
+
+    .hspt-address {
+      @include pingfang-font(#333, 32px, 400);
+      margin-bottom: 24px;
+      margin-left: 40px;
+      max-width: 630px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .hspt-name {
+      @include pingfang-font(#333, 32px, 600);
+      margin-top: 32px;
+      position: relative;
+      left: -420px;
+      max-width: 450px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .hspt-phone {
+      @include pingfang-font(#333, 32px, 400);
+      margin-bottom: 30px;
+      margin-top: 30px;
+      position: relative;
+      left: -420px;
+      max-width: 450px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
