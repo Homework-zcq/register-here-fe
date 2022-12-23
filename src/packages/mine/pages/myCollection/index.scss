@@ -115,4 +115,21 @@
       text-overflow: ellipsis;
     }
   }
+
+  .null-box {
+    width: 488px;
+    height: 412px;
+    @include flex(column, space-between, nowrap);
+    align-items: center;
+    margin-top: 50px;
+
+    .null-img {
+      width: 488px;
+      height: 276px;
+    }
+
+    .null-font {
+      @include pingfang-font(#333, 32px, 400);
+    }
+  }
 }

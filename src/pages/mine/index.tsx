@@ -45,12 +45,16 @@ export default function Mine() {
     // 获取收藏医院
     await request.get(`/api/favorite-hospitals?${_query}`).then((res) => {
       // console.log("====getCollected_hospiatls_res", res.data.data[0].attributes.campuses.data[0]);
-      collectedHosp = res.data.data[0].attributes.campuses.data.length;
+      if(res.data.data[0]) {
+        collectedHosp = res.data.data[0].attributes.campuses.data.length;
+      }
     });
     // 获取收藏医生
     await request.get(`/api/favorite-doctors?${_query}`).then((res) => {
       // console.log("====getCollected_doctors_res", res.data.data[0].attributes.doctors.data[0]);
-      collectedDoc = res.data.data[0].attributes.doctors.data.length;
+      if(res.data.data[0]) {
+        collectedDoc = res.data.data[0].attributes.doctors.data.length;
+      }
     });
     await setCollected(collectedDoc + collectedHosp);
   };
@@ -66,7 +70,6 @@ export default function Mine() {
       },
     });
     await request.get(`/api/visittings?${_query}`).then((res) => {
-      // console.log("====getVisittings_res", res.data)
       setVisittings(res.data.data.length);
     });
   };

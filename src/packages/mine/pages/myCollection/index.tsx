@@ -4,14 +4,15 @@ import { View, Image, Text } from "@tarojs/components";
 import Taro, { useDidShow } from "@tarojs/taro";
 import qs from "qs";
 import { useState } from "react";
+import {collected_empty} from "@/packages/mine/assets/img/collected_empty.png"
 import "./index.scss";
 
 export default function Collection() {
   const [type, setType] = useState("我的医院");
   const [doctorList, setDoctorList] = useState<Array<CollectedDoctor> | null>(
-    []
+    null
   );
-  const [hsptList, setHsptList] = useState<Array<CollectedHspt> | null>([]);
+  const [hsptList, setHsptList] = useState<Array<CollectedHspt> | null>(null);
 
   useDidShow(() => {
     Taro.getStorage({
@@ -108,7 +109,9 @@ export default function Collection() {
     });
     // 获取收藏医生
     await request.get(`/api/favorite-doctors?${_query}`).then((res) => {
-      setDoctorList(res.data.data[0].attributes.doctors.data);
+      if(res.data.data[0].attributes.doctors.data) {
+        setDoctorList(res.data.data[0].attributes.doctors.data);
+      }
     });
   };
 
@@ -129,7 +132,7 @@ export default function Collection() {
         </View>
       </View>
       {/* 医生列表 */}
-      {type === "我的医生" &&
+      {type === "我的医生" && doctorList !== null &&
         doctorList?.map((val, key) => {
           return (
             <View key={key} className='doctor-box'>
@@ -140,7 +143,7 @@ export default function Collection() {
           );
         })}
       {/* 医院列表 */}
-      {type === "我的医院" && 
+      {type === "我的医院" && hsptList !== null &&
         hsptList?.map((val, key) => {
             return (
                 <View key={key} className='hspt-box'>
@@ -151,6 +154,14 @@ export default function Collection() {
                 </View>
             )
         })}
+      {/* 为空 */}
+      {
+        ((type === "我的医生" && doctorList === null )|| (type === "我的医院" && hsptList === null)) &&
+        <View className='null-box'>
+          <Image src={collected_empty} className='null-img' />
+          <Text className='null-font'>暂时还没有收藏哟</Text>
+        </View>
+      }
     </View>
   );
 }
