@@ -4,11 +4,6 @@ import "./index.scss";
 import search from "@/assets/img/search.png";
 import fen from "@/assets/img/fen.png";
 import xun from "@/assets/img/xun.png";
-import gu from "@/assets/img/gu.png";
-import kou from "@/assets/img/kou.png";
-import pi from "@/assets/img/pi.png";
-import fu from "@/assets/img/fu.png";
-import gang from "@/assets/img/gang.png";
 import choose from "@/assets/icon/choose.png";
 import { useState } from "react";
 import { useLoad } from "@tarojs/taro";
@@ -16,14 +11,8 @@ import request from "@/services/request";
 import { campusInfo } from "@/services/types";
 import CampuseCard from "@/components/CampuseCard";
 import Taro from "@tarojs/taro";
+import { roomList } from "@/utils/roomicon";
 
-const roomList = [
-  { img: gu, name: "骨科" },
-  { img: kou, name: "口腔科" },
-  { img: pi, name: "皮肤科" },
-  { img: fu, name: "妇产科" },
-  { img: gang, name: "肛肠科" },
-];
 export default function Index() {
   const [campuses, setCampuses] = useState<campusInfo[]>([]);
   useLoad(() => {

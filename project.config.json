@@ -5,20 +5,20 @@
   "appid": "wx41c61cb60a46490f",
   "setting": {
     "urlCheck": true,
-    "es6": false,
-    "enhance": false,
+    "es6": true,
+    "enhance": true,
     "compileHotReLoad": false,
-    "postcss": false,
-    "minified": false,
+    "postcss": true,
+    "minified": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "ignoreUploadUnusedFiles": false,
+    "ignoreUploadUnusedFiles": true,
     "ignoreDevUnusedFiles": false,
     "minifyWXSS": true,
-    "uglifyFileName": true
+    "uglifyFileName": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.28.0",
