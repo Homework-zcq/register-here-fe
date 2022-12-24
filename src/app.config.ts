@@ -17,6 +17,8 @@ export default defineAppConfig({
       root: "packages/register",
       pages: [
         "pages/index/index",
+        "pages/hospitalHome/index",
+        "pages/hospitalDetail/index"
       ],
     },
     {

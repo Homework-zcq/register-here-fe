@@ -22,6 +22,7 @@ export default function Mine() {
       key: "user",
       success: function (res) {
         if (res.data) {
+          console.log(res.data);
           setUserInfo(res.data);
         }
         getCollected(res.data.id);

@@ -1,0 +1,205 @@
+.container {
+  background: #F5F5F5;
+  padding: 32px 32px 0 32px;
+  box-sizing: border-box;
+  min-height: 100vh;
+
+  .hospital_box {
+    width: 100%;
+    padding: 32px;
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 32px;
+    background: #FFFFFF;
+
+    .hospital_logo {
+      width: 164px;
+      height: 164px;
+      border-radius: 200px;
+      margin-top: 28px;
+    }
+
+    .hospital_right {
+      margin-left: 18px;
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 182px);
+
+      .hospital_name {
+        font-size: 34px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #1E1F20;
+      }
+
+      .hospital_detail {
+        margin-top: 16px;
+        font-size: 24px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #9B9999;
+        word-break: break-all;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+
+      .hospital_lables {
+        display: flex;
+        margin-left: -12px;
+        flex-wrap: wrap;
+
+        .hospital_lable_box1 {
+          background: #5C8DEE;
+          border-radius: 10px 10px 10px 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 3px 7px;
+          opacity: 1;
+          margin-left: 12px;
+          margin-top: 8px;
+
+          .hospital_lable_text1 {
+            font-size: 24px;
+            font-family: PingFang SC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #FFFFFF;
+          }
+        }
+
+        .hospital_lable_box2 {
+          background: none;
+          border-radius: 10px 10px 10px 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 3px 7px;
+          border: 1px solid #5C8DEE;
+          opacity: 1;
+          margin-left: 12px;
+          margin-top: 8px;
+
+          .hospital_lable_text2 {
+            font-size: 24px;
+            font-family: PingFang SC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #5C8DEE;
+          }
+        }
+      }
+    }
+  }
+
+  .campuses_box {
+    width: 100%;
+    padding: 32px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-radius: 32px;
+    background: #FFFFFF;
+    margin-top: 40px;
+
+    .campuses_top {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .campuses_title {
+        font-size: 34px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #000000;
+      }
+
+      .campuses_phone {
+        display: flex;
+
+        .campuses_icon {
+          width: 44px;
+          height: 44px;
+        }
+
+        .campuses_phone_text {
+          margin-left: 8px;
+          font-size: 28px;
+          font-family: PingFang SC-Semibold, PingFang SC;
+          font-weight: 600;
+          color: #2574FF;
+        }
+      }
+    }
+    .campuse_box {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+
+      .campuse_info {
+        display: flex;
+
+        .campuse_logo {
+          width: 90px;
+          height: 90px;
+          border-radius: 50%;
+        }
+        .campuse_info_right {
+          margin-left: 12px;
+
+          .campuse_info_rifht_top {
+            display: flex;
+            align-items: center;
+          }
+          .campuse_name {
+            font-size: 30px;
+            font-family: PingFang SC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #000000;
+          }
+          .campuse_distance {
+            font-size: 24px;
+            font-family: PingFang SC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #9F9F9F;
+            margin-left: 12px;
+          }
+          .campuse_star {
+            width: 32px;
+            height: 32px;
+            margin-left: 16px;
+          }
+          .campuse_address {
+            font-size: 24px;
+            font-family: PingFang SC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #9F9F9F;
+            margin-top: 10px;
+          }
+        }
+      }
+      .campuse_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 92px;
+        padding: 0;
+        margin: 0;
+        height: 40px;
+        background: #5C8DEE;
+        border-radius: 24px 24px 24px 24px;
+        opacity: 1;
+        .campuse_button_text {
+          font-size: 20px;
+          font-family: PingFang SC-Semibold, PingFang SC;
+          font-weight: 600;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+}

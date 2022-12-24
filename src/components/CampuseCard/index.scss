@@ -1,0 +1,79 @@
+.Campuse-part {
+  width: 100%;
+  padding: 32px 0 24px 0;
+  box-sizing: border-box;
+  display: flex;
+
+  .Campuse-logo {
+    width: 84px;
+    height: 84px;
+    border-radius: 200px 200px 200px 200px;
+    opacity: 1;
+  }
+  .Campuse-right {
+    display: flex;
+    flex-direction: column;
+    margin-left: 24px;
+    width: calc(100% - 108px);
+
+    .Campuse-name {
+      width: 100%;
+      font-size: 30px;
+      font-family: PingFang SC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: #000000;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: keep-all;
+    }
+    .Campuse-address {
+      margin-top: 4px;
+      font-size: 24px;
+      font-family: PingFang SC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: #9F9F9F;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: keep-all;
+    }
+    .Campuse-last {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      .Campuse-labels {
+        display: flex;
+        margin-left: -4px;
+
+        .Campuse-label-box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 2px 6px;
+          background-color: #C8DBFF;
+          margin-left: 4px;
+
+          .Campuse-label-text {
+            height: 28px;
+            font-size: 20px;
+            font-family: PingFang SC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #3D5AF2;
+            line-height: 28px;
+          }
+        }
+      }
+
+      .Campuse-distance {
+        height: 34px;
+        font-size: 24px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #9F9F9F;
+        line-height: 34px;
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { View, Image, Text } from "@tarojs/components";
 import Taro, { useDidShow } from "@tarojs/taro";
 import qs from "qs";
 import { useState } from "react";
-import {collected_empty} from "@/packages/mine/assets/img/collected_empty.png"
+import collected_empty from "@/packages/mine/assets/img/collected_empty.png"
 import "./index.scss";
 
 export default function Collection() {
@@ -62,12 +62,8 @@ export default function Collection() {
                   val.attributes.name +
                   ")"
                 : val.attributes.hospital.data.attributes.name, // 全名（医院+院区拼接）如果院区没有名字则忽略
-              contact: val.attributes.concat
-                ? val.attributes.concat
-                : val.attributes.hospital.data.attributes.concat, // 优先取医院电话，院区电话次之
-              address: val.attributes.hospital.data.attributes.address // 优先取医院地址，院区地址次之
-                ? val.attributes.hospital.data.attributes.address
-                : val.attributes.address,
+              contact: val.attributes.concat,
+              address: val.attributes.address,
               logo: val.attributes.hospital.data.attributes.logo
             },
           ];

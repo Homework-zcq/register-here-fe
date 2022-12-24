@@ -86,7 +86,7 @@
       @include pingfang-font(#333, 32px, 400);
       margin-bottom: 24px;
       margin-left: 40px;
-      max-width: 630px;
+      width: 100%;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -96,7 +96,7 @@
       @include pingfang-font(#333, 32px, 600);
       margin-top: 32px;
       position: relative;
-      left: -420px;
+      left: calc(-100% + 130px);
       max-width: 450px;
       overflow: hidden;
       white-space: nowrap;
@@ -108,7 +108,7 @@
       margin-bottom: 30px;
       margin-top: 30px;
       position: relative;
-      left: -420px;
+      left: calc(-100% + 130px);
       max-width: 450px;
       overflow: hidden;
       white-space: nowrap;
