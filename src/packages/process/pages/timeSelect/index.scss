@@ -14,140 +14,201 @@
   color: $color;
 }
 
-.page-doctor-select {
+.page-time-select {
   @include gray-back();
   @include flex(column, flex-start, nowrap);
   align-items: center;
 
-  .hospital-department {
+  .current-doctor {
     @include flex(column, flex-start, nowrap);
     width: 94%;
-    height: 228px;
-    padding-top: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
-    box-sizing: border-box;
-    background: #FFF;
-    border-radius: 40px;
-    margin-bottom: 40px;
-
-    .hospital {
-      @include flex(row, flex-start, nowrap);
-      align-items: center;
-      .hospital-icon {
-        width: 68px;
-        height: 68px;
-        margin-right: 22px;
-      }
-    }
-
-    .department {
-      margin-top: 22px;
-      @include pingfang-font(#000, 42px, 300);
-    }
-  }
-
-  .normal-visiting {
-    @include flex(column, flex-start, nowrap);
-    width: 94%;
-    height: 228px;
-    padding-top: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
-    box-sizing: border-box;
-    background: #FFF;
-    border-radius: 40px;
-    margin-bottom: 40px;
-
-    .visiting {
-      @include flex(row, flex-start, nowrap);
-      justify-content: space-between;
-
-      .custom-color {
-        --badge-background-color: #1989fa;
-      }
-    }
-
-    .doctor {
-      @include flex(row, flex-start, nowrap);
-      margin-top: 28px;
-      justify-content: space-between;
-      align-items: center;
-      .details {
-        @include flex(row, flex-start, nowrap);
-        align-items: center;
-      }
-    }
-  }
-
-  .expert-visiting {
-    @include flex(column, flex-start, nowrap);
-    width: 94%;
+    height: 368px;
     padding: 40px;
     box-sizing: border-box;
     background: #FFF;
     border-radius: 40px;
     margin-bottom: 40px;
+    margin-top: 24px;
 
-    .visiting {
-      margin-bottom: 24px;
-    }
-
-    .expert {
+    .doctor {
       @include flex(row, flex-start, nowrap);
       align-items: center;
-      padding-bottom: 12px;
+      margin-bottom: 32px;
+      
+      .doctor-details {
+        @include flex(column, flex-start, nowrap);
+        flex: 1;
+        width: 0;
 
-      .avatar {
+        .level {
+          @include flex(row, flex-start, nowrap);
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    .expert-at {
+      @include flex(row, flex-start, nowrap);
+      align-items: center;
+      margin-bottom: 32px;
+
+      .tag-wrapper {
         align-self: flex-start;
         margin-right: 12px;
       }
 
-      .details {
+      .desc {
         flex: 1;
-        width: 0;
-
-        .title {
-          @include flex(row, flex-start, nowrap);
-          align-items: center;
-          justify-content: space-between;
-        }
-
-        .price {
-          @include flex(row, flex-start, nowrap);
-          align-items: center;
-          justify-content: space-between;
-          .price-des {
-            @include flex(row, flex-start, nowrap);
-            align-items: center;
-          }
-        }
       }
     }
 
-    .expert + .expert {
-      border-top: #EEEEEE 1px solid;
-      padding-top: 24px;
+    .current-visiting {
+      @include flex(row, flex-start, nowrap);
+      align-items: center;
+      margin-bottom: 32px;
+
+      .tag-wrapper {
+        align-self: flex-start;
+        margin-right: 12px;
+      }
+      
+      .desc {
+        flex: 1;
+      }
+    }
+  }
+
+  .select-time {
+    @include flex(row, flex-start, nowrap);
+    align-items: center;
+    align-self: flex-start;
+    margin-bottom: 24px;
+    margin-left: 24px;
+
+    text {
+      margin-left: 12px;
+    }
+  }
+
+  .pick-date {
+    max-width: 100%;
+    @include flex(row, flex-start, nowrap);
+    align-items: center;
+    overflow: auto;
+    margin-bottom: 32px;
+    margin-left: 32px;
+
+    .date-item {
+      @include flex(column, flex-start, nowrap);
+      align-items: center;
+      box-sizing: border-box;
+      background: #FFF;
+      border-radius: 20px;
+      flex: 0 0 120px;
+      height: 200px;
+      padding: 20px;
+      justify-content: space-around;
+      border: #2574FF 1px solid;
+
+      .week {
+        @include pingfang-font(#333333 , 36px, 500);
+      }
+
+      .date {
+        @include pingfang-font(#000000 , 26px, 400);
+      }
+      
+      .status {
+        @include pingfang-font(#0038FF , 26px, 500);
+      }
+
+      .disabled {
+        @include pingfang-font(#5E5E5E , 26px, 500);
+      }
+    }
+  
+    .picked {
+      background-color: #C8DBFF;
+    }
+
+    .date-item + .date-item {
+      margin-left: 32px;
+    }
+  }
+
+  .current-place {
+    @include flex(column, flex-start, nowrap);
+    width: 94%;
+    height: 328px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #FFF;
+    border-radius: 40px;
+    margin-bottom: 40px;
+    margin-top: 24px;
+
+    .period-pick {
+      @include flex(row, flex-start, nowrap);
+      justify-content: space-between;
+      background-color: #D9E5FF;
+      border: #2574FF 1px solid;
+      align-items: center;
+      box-sizing: border-box;
+      border-radius: 20px;
+      height: 72px;
+      margin-top: 32px;
+
+      .details {
+        @include flex(row, flex-start, nowrap);
+        align-items: center;
+        margin-right: 24px;
+      }
     }
   }
 }
 
 .desc-font {
-  @include pingfang-font(#333333 , 24px, 300);
+  @include pingfang-font(#333333 , 26px, 400);
   max-width: 100%;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 .name-font {
-  @include pingfang-font(#333333 , 32px, 500);
+  @include pingfang-font(#333333 , 48px, 500);
 }
 
 .level-font {
-  @include pingfang-font(#333333 , 28px, 400);
+  @include pingfang-font(#646464 , 32px, 500);
 }
 
 .price-font {
   @include pingfang-font(#3D5AF2 , 26px, 450);
+}
+
+.link-font {
+  @include pingfang-font(#2574FF , 28px, 400);
+}
+
+.custom-color {
+  color: #1989fa;
+  
+  .taroify-loading__text {
+    color: #1989fa;
+  }
+}
+
+.empty {
+  width: 100%;
+  padding: 0;
+  .taroify-empty__description {
+    padding: 0;
+    @include pingfang-font(#000000 , 24px, 500);
+  }
+}
+
+.custom-empty__image {
+  width: 120px;
+  height: 120px;
 }
