@@ -1,0 +1,153 @@
+@import "@/services/common.scss";
+
+@mixin apple-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: Apple SD Gothic Neo-Bold, Apple SD Gothic Neo;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+@mixin pingfang-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: PingFang SC-Semibold, PingFang SC;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+.page-doctor-select {
+  @include gray-back();
+  @include flex(column, flex-start, nowrap);
+  align-items: center;
+
+  .hospital-department {
+    @include flex(column, flex-start, nowrap);
+    width: 94%;
+    height: 228px;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    background: #FFF;
+    border-radius: 40px;
+    margin-bottom: 40px;
+
+    .hospital {
+      @include flex(row, flex-start, nowrap);
+      align-items: center;
+      .hospital-icon {
+        width: 68px;
+        height: 68px;
+        margin-right: 22px;
+      }
+    }
+
+    .department {
+      margin-top: 22px;
+      @include pingfang-font(#000, 42px, 300);
+    }
+  }
+
+  .normal-visiting {
+    @include flex(column, flex-start, nowrap);
+    width: 94%;
+    height: 228px;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    background: #FFF;
+    border-radius: 40px;
+    margin-bottom: 40px;
+
+    .visiting {
+      @include flex(row, flex-start, nowrap);
+      justify-content: space-between;
+
+      .custom-color {
+        --badge-background-color: #1989fa;
+      }
+    }
+
+    .doctor {
+      @include flex(row, flex-start, nowrap);
+      margin-top: 28px;
+      justify-content: space-between;
+      align-items: center;
+      .details {
+        @include flex(row, flex-start, nowrap);
+        align-items: center;
+      }
+    }
+  }
+
+  .expert-visiting {
+    @include flex(column, flex-start, nowrap);
+    width: 94%;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #FFF;
+    border-radius: 40px;
+    margin-bottom: 40px;
+
+    .visiting {
+      margin-bottom: 24px;
+    }
+
+    .expert {
+      @include flex(row, flex-start, nowrap);
+      align-items: center;
+      padding-bottom: 12px;
+
+      .avatar {
+        align-self: flex-start;
+        margin-right: 12px;
+      }
+
+      .details {
+        flex: 1;
+        width: 0;
+
+        .title {
+          @include flex(row, flex-start, nowrap);
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .price {
+          @include flex(row, flex-start, nowrap);
+          align-items: center;
+          justify-content: space-between;
+          .price-des {
+            @include flex(row, flex-start, nowrap);
+            align-items: center;
+          }
+        }
+      }
+    }
+
+    .expert + .expert {
+      border-top: #EEEEEE 1px solid;
+      padding-top: 24px;
+    }
+  }
+}
+
+.desc-font {
+  @include pingfang-font(#333333 , 24px, 300);
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.name-font {
+  @include pingfang-font(#333333 , 32px, 500);
+}
+
+.level-font {
+  @include pingfang-font(#333333 , 28px, 400);
+}
+
+.price-font {
+  @include pingfang-font(#3D5AF2 , 26px, 450);
+}

@@ -27,10 +27,11 @@ export default defineAppConfig({
       ],
     },
     {
-      // 选择医生
-      root: "packages/doctorSelect",
+      // 挂号流程
+      root: "packages/process",
       pages: [
-        "pages/index/index",
+        "pages/doctorSelect/index",
+        "pages/timeSelect/index",
       ],
     },
   ],
