@@ -1,3 +1,49 @@
-.test {
-  color: blue !important;
+@import "@/services/common.scss";
+
+@mixin apple-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: Apple SD Gothic Neo-Bold, Apple SD Gothic Neo;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+@mixin pingfang-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: PingFang SC-Semibold, PingFang SC;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+.page-doctor-select {
+  @include gray-back();
+  @include flex(column, flex-start, nowrap);
+  align-items: center;
+
+  .hospital-department {
+    @include flex(column, flex-start, nowrap);
+    width: 94%;
+    height: 228px;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    background: #FFF;
+    border-radius: 40px;
+    margin-bottom: 40px;
+
+    .hospital {
+      @include flex(row, flex-start, nowrap);
+      align-items: center;
+      .hospital-icon {
+        width: 68px;
+        height: 68px;
+        margin-right: 22px;
+      }
+    }
+
+    .department {
+      margin-top: 22px;
+      @include pingfang-font(#000, 42px, 300);
+    }
+  }
 }
