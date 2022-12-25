@@ -138,11 +138,12 @@ export default function HospitalHome() {
               src={hospital?.attributes.logo || ""}
             />
             <View
-                onClick={() =>
-                  Taro.navigateTo({
-                    url: `/packages/register/pages/hospitalDetail/index?campuseId=${campuseId}`,
-                  })
-                }>
+              onClick={() =>
+                Taro.navigateTo({
+                  url: `/packages/register/pages/hospitalDetail/index?campuseId=${campuseId}`,
+                })
+              }
+            >
               <Text className="hospital_go">查看详情{">"}</Text>
             </View>
           </View>
@@ -217,7 +218,14 @@ export default function HospitalHome() {
                       </Text>
                     </View>
                   </View>
-                  <Button className="campuse_button">
+                  <Button
+                    className="campuse_button"
+                    onClick={() =>
+                      Taro.navigateTo({
+                        url: `/packages/register/pages/departmentChoose/index?campuseId=${val.id}`,
+                      })
+                    }
+                  >
                     <Text className="campuse_button_text">去挂号</Text>
                   </Button>
                 </View>

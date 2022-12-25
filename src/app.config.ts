@@ -18,7 +18,8 @@ export default defineAppConfig({
       pages: [
         "pages/index/index",
         "pages/hospitalHome/index",
-        "pages/hospitalDetail/index"
+        "pages/hospitalDetail/index",
+        "pages/departmentChoose/index"
       ],
     },
     {
