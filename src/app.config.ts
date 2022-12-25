@@ -35,6 +35,7 @@ export default defineAppConfig({
       pages: [
         "pages/doctorSelect/index",
         "pages/timeSelect/index",
+        "pages/registerDetail/index",
       ],
     },
     {

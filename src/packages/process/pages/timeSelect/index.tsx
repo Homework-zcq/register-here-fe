@@ -6,6 +6,7 @@ import { Dot, PageLoading } from '@/components';
 import { Avatar, Tag, Loading, Button, Empty, Popup } from '@taroify/core';
 import { getRenderInfo, getWeekday } from './utils';
 import './index.scss';
+import Taro from '@tarojs/taro';
 
 interface currentPlaceInfo {
   date: string;
@@ -142,6 +143,11 @@ export default function TimeSelect() {
                       }}
                       shape='round'
                       disabled={!v.count}
+                      onClick={() => {
+                        Taro.navigateTo({
+                          url: `/packages/process/pages/registerDetail/index`,
+                        })
+                      }}
                     >
                       总30剩{v.count}
                     </Button>
