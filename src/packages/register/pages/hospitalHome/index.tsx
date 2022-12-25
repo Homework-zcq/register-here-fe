@@ -132,10 +132,20 @@ export default function HospitalHome() {
       </View>
       <View className="container">
         <View className="hospital_box">
-          <Image
-            className="hospital_logo"
-            src={hospital?.attributes.logo || ""}
-          />
+          <View className="hospital_left">
+            <Image
+              className="hospital_logo"
+              src={hospital?.attributes.logo || ""}
+            />
+            <View
+                onClick={() =>
+                  Taro.navigateTo({
+                    url: `/packages/register/pages/hospitalDetail/index?campuseId=${campuseId}`,
+                  })
+                }>
+              <Text className="hospital_go">查看详情{">"}</Text>
+            </View>
+          </View>
           <View className="hospital_right">
             <Text className="hospital_name">
               {hospital?.attributes.name || "医院名称"}

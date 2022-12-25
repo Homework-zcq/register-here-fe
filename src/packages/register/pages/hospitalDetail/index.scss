@@ -1,107 +1,199 @@
-
-.index{
-  background-color: #F5F5F5;
+.container {
   min-height: 100vh;
-  padding: 32px 32px 0 32px;
+  background-color: #f5f5f5;
+  width: 100%;
+  padding: 68px 32px 32px 32px;
   box-sizing: border-box;
-  .search_box {
-    width: 100%;
-    height: 96px;
-    border-radius: 24px;
-    box-shadow: 0px 10px 20px 0px rgba(0,64,128,0.04);
-    display: flex;
-    padding-left: 32px;
-    padding-right: 32px;
-    justify-content: flex-start;
-    align-items: center;
-    background: #FFFFFF;
-    box-sizing: border-box;
 
-    .search_icon {
-      width: 48px;
-      height: 48px;
-    }
-    .search_input {
-      flex: 1;
-      height: 32px;
-      font-size: 26px;
-      font-family: PingFang SC-Regular, PingFang SC;
-      font-weight: 400;
-      color: #9393AA;
-      line-height: 32px;
-      margin-left: 32px;
-    }
-  }
-  .ask_box {
+  .detail_box {
     width: 100%;
-    margin-top: 32px;
+    background: #FFFFFF;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    .ask_img_box {
-      .ask_img {
-        width: 332px;
-        height: 332px;
-        object-fit: contain;
-        background: #FFFFFF;
-        border-radius: 32px 32px 32px 32px;
+    position: relative;
+    border-radius: 32px;
+
+    .info {
+      width: 100%;
+      padding: 0 32px 32px 32px;
+      box-sizing: border-box;
+      margin-top: -38px;
+      display: flex;
+      flex-direction: column;
+
+      .logo {
+        margin-left: 20px;
+        width: 116px;
+        height: 116px;
+        border-radius: 200px 200px 200px 200px;
         opacity: 1;
-        box-shadow: 0px 10px 20px 0px rgba(0,64,128,0.04);
+      }
+
+      .name {
+        margin-top: 14px;
+        font-size: 46px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #1E1F20;
+      }
+
+      .hospital_lables {
+        display: flex;
+        margin-left: -12px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+
+        .hospital_lable_box {
+          background: #5FC4A2;
+          border-radius: 10px 10px 10px 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 3px 7px;
+          opacity: 1;
+          margin-left: 12px;
+          margin-top: 8px;
+
+          .hospital_lable_text1 {
+            font-size: 24px;
+            font-family: PingFang SC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #FFFFFF;
+          }
+        }
+      }
+
+      .line {
+        margin: 36px 0 28px 0;
+        width: 640px;
+        height: 0px;
+        opacity: 1;
+        border: 2px solid rgba(214, 214, 214, 0.5);
+      }
+
+      .detail {
+        width: 100%;
+        max-height: 300px;
+        overflow: hidden;
+        font-size: 28px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #9B9999;
+      }
+
+      .shou {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .shou_text {
+          font-size: 32px;
+          font-family: PingFang SC-Semibold, PingFang SC;
+          font-weight: 600;
+          color: rgba(23, 119, 255, 0.9);
+        }
+      }
+    }
+
+    .more {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 0px 0px 32px 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+
+      .more_text {
+        font-size: 32px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: rgba(23, 119, 255, 0.9);
       }
     }
   }
 
   .room_box {
     width: 100%;
-    height: 266px;
     background: #FFFFFF;
-    padding: 32px;
+    display: flex;
+    position: relative;
+    background: linear-gradient(180deg, rgba(90, 167, 227, 0.69) 0%, rgba(255, 255, 255, 0.7) 20%, rgba(255, 255, 255, 1) 100%);
+    border-radius: 32px;
     margin-top: 32px;
-    border-radius: 32px 32px 32px 32px;
-    box-sizing: border-box;
 
-    .title {
-      height: 56px;
-      font-size: 40px;
-      font-family: PingFang SC-Semibold, PingFang SC;
-      font-weight: 600;
-      color: #000000;
-      line-height: 56px;
-      display: block;
-    }
+    .info {
+      width: 100%;
+      padding: 32px 32px 32px 32px;
 
-    .room_class {
+      box-sizing: border-box;
       display: flex;
-      justify-content: space-between;
-      margin-top: 32px;
+      flex-direction: column;
 
-      .room_card {
-        height: 114px;
+      .name_logo {
+        width: 41px;
+        height: 41px;
+        background: #1777FF;
+        opacity: 1;
+      }
+
+      .name {
+        font-size: 38px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #1E1F20;
+        margin-left: 12px;
+      }
+
+      .detail {
+        width: 100%;
+        margin-top: 28px;
+        max-height: 200px;
+        overflow: hidden;
+        font-size: 28px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #9B9999;
+      }
+
+      .shou {
+        width: 100%;
+        height: 60px;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        .room_icon {
-          width: 64px;
-          height: 64px;
-        }
-        .room_name {
-          display: block;
-          margin-top: 16px;
-          width: 72px;
-          text-align: center;
-          height: 34px;
-          font-size: 24px;
-          font-family: PingFang SC, PingFang SC;
-          font-weight: 400;
-          color: #333333;
-          line-height: 34px;
+        .shou_text {
+          font-size: 32px;
+          font-family: PingFang SC-Semibold, PingFang SC;
+          font-weight: 600;
+          color: rgba(23, 119, 255, 0.9);
         }
       }
     }
-  }
-  .test {
-    color: blue !important;
+
+    .more {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 0px 0px 32px 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+
+      .more_text {
+        font-size: 32px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: rgba(23, 119, 255, 0.9);
+      }
+    }
   }
 }
