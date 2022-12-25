@@ -216,7 +216,6 @@
 .popup-details {
   @include flex(column, flex-start, nowrap);
   align-items: center;
-
   .title {
     padding: 32px;
     @include pingfang-font(#000000 , 28px, 500);
@@ -227,6 +226,8 @@
     align-items: center;
     margin-left: 20px;
     margin-top: 24px;
+    width: 100%;
+    padding-left: 24px;
 
     .dot {
       align-self: flex-start;

@@ -39,6 +39,12 @@
         height: 68px;
         margin-right: 22px;
       }
+      .campus-name {
+        @include flex(column, flex-start, nowrap);
+        .campus {
+          @include pingfang-font(#000, 28px, 300);
+        }
+      }
     }
 
     .department {
@@ -117,6 +123,7 @@
           @include flex(row, flex-start, nowrap);
           align-items: center;
           justify-content: space-between;
+          margin-top: 8px;
           .price-des {
             @include flex(row, flex-start, nowrap);
             align-items: center;
