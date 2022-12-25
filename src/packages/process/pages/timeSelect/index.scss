@@ -212,3 +212,37 @@
   width: 120px;
   height: 120px;
 }
+
+.popup-details {
+  @include flex(column, flex-start, nowrap);
+  align-items: center;
+
+  .title {
+    padding: 32px;
+    @include pingfang-font(#000000 , 28px, 500);
+  }
+
+  .about {
+    @include flex(row, flex-start, nowrap);
+    align-items: center;
+    margin-left: 20px;
+    margin-top: 24px;
+
+    .dot {
+      align-self: flex-start;
+      margin-right: 24px;
+      margin-top: 4px;
+    }
+
+    .details {
+      @include flex(column, flex-start, nowrap);
+      .dot-title {
+        @include pingfang-font(#000000 , 32px, 500);
+      }
+      .desc {
+        margin-top: 12px;
+        @include pingfang-font(#333333 , 26px, 400);
+      }
+    }
+  }
+}

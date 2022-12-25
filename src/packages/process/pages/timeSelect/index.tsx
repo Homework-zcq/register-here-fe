@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { isNil, get, isEmpty } from "lodash";
 import { View, Text, } from "@tarojs/components";
 import { Dot } from '@/components';
-import { Avatar, Tag, Loading, Button, Empty } from '@taroify/core';
+import { Avatar, Tag, Loading, Button, Empty, Popup } from '@taroify/core';
 import { getRenderInfo, getWeekday } from './utils';
 import "./index.scss";
 
@@ -15,6 +15,7 @@ interface currentPlaceInfo {
 }
 
 export default function TimeSelect() {
+  const [open, setOpen] = useState<boolean>(false);
   const [doctor, setDoctor] = useState<any>();
   const [dept, setDept] = useState<any>();
   const [places, setPlaces] = useState<any>(null);
@@ -32,7 +33,7 @@ export default function TimeSelect() {
     setCurrentPlace({
       date: e,
       period_info: get(places, e),
-      available: get(places, e)?.every(v => v.count > 0)
+      available: get(places, e)?.reduce((pre, cur) => pre.count + cur.count) > 0,
     });
   }
 
@@ -45,7 +46,7 @@ export default function TimeSelect() {
             <Text className='name-font'>陈伟明</Text>
             <View className='level'>
               <Text className='level-font'>主任医生</Text>
-              <Text className='link-font'>{"查看简介 >"}</Text>
+              <Text className='link-font' onClick={() => setOpen(true)}>{"查看简介 >"}</Text>
             </View>
           </View>
         </View>
@@ -83,7 +84,7 @@ export default function TimeSelect() {
             <Text style={{ marginLeft: "12px" }}>{v.time_period === 'am' ? '上午' : '下午'}</Text>
             <View className='details'>
               <Text style={{ marginRight: "12px" }} className='price-font'>¥50</Text>
-              <Button size='mini' style={{ backgroundColor: "#5C8DEE", color: "#fff", width: '80px', height: '28px' }} shape='round' disabled={!v.isFree}>总30剩{v.count}</Button>
+              <Button size='mini' style={{ backgroundColor: "#5C8DEE", color: "#fff", width: '80px', height: '28px' }} shape='round' disabled={!v.count}>总30剩{v.count}</Button>
             </View>
           </View>))) :
           <Empty className='empty'>
@@ -95,6 +96,29 @@ export default function TimeSelect() {
           </Empty>
         }
       </View>
+      <Popup open={open} placement='bottom' style={{ height: '30%' }} >
+        {/* <Popup.Close onClick={() => setOpen(false)} /> */}
+        <Popup.Backdrop onClick={() => setOpen(false)} />
+        <View className='popup-details'>
+          <Text className='title'>医生简介</Text>
+
+          <View className='about'>
+            <View className='dot'><Dot color='blue' /></View>
+            <View className='details'>
+              <Text className='dot-title'>简介</Text>
+              <Text className='desc'>擅长周围神经病、肌病、遗传病、脑血管病和神经系统疑难罕见病的诊治。</Text>
+            </View>
+          </View>
+
+          <View className='about'>
+            <View className='dot'><Dot color='blue' /></View>
+            <View className='details'>
+              <Text className='dot-title'>擅长</Text>
+              <Text className='desc'>擅长周围神经病、肌病、遗传病、脑血管病和神经系统疑难罕见病的诊治。</Text>
+            </View>
+          </View>
+        </View>
+      </Popup>
     </View>
   );
 }
