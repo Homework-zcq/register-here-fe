@@ -36,6 +36,14 @@ export default defineAppConfig({
         "pages/timeSelect/index",
       ],
     },
+    {
+      // 智能分诊
+      root: "packages/triage",
+      pages: [
+        // "pages/quickDept/index",
+        "pages/selectHospital/index",
+      ],
+    },
   ],
   window: {
     backgroundTextStyle: "light",

@@ -1,0 +1,210 @@
+@import "@/services/common.scss";
+
+@mixin apple-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: Apple SD Gothic Neo-Bold, Apple SD Gothic Neo;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+@mixin pingfang-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: PingFang SC-Semibold, PingFang SC;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+.page-select-hospital {
+  @include gray-back();
+  @include flex(column, flex-start, nowrap);
+  // align-items: center;
+
+  .search-box {
+    padding: unset 0;
+    border-radius: 24px;
+    margin: 24px 0;
+
+    .taroify-search__content {
+      padding-left: 0;
+    }
+    .taroify-search__field {
+      background-color: #FFFFFF;
+    }
+  }
+
+  .hospital_box {
+    width: 100%;
+    padding: 32px;
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 32px;
+    background: #FFFFFF;
+
+    .hospital_logo {
+      width: 164px;
+      height: 164px;
+      border-radius: 200px;
+      margin-top: 28px;
+    }
+
+    .hospital_right {
+      margin-left: 18px;
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 182px);
+
+      .hospital_name {
+        font-size: 34px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #1E1F20;
+      }
+
+      .hospital_detail {
+        margin-top: 16px;
+        font-size: 24px;
+        font-family: PingFang SC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #9B9999;
+        word-break: break-all;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+
+      .hospital_lables {
+        display: flex;
+        margin-left: -12px;
+        flex-wrap: wrap;
+
+        .hospital_lable_box1 {
+          background: #5C8DEE;
+          border-radius: 10px 10px 10px 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 3px 7px;
+          opacity: 1;
+          margin-left: 12px;
+          margin-top: 8px;
+
+          .hospital_lable_text1 {
+            font-size: 24px;
+            font-family: PingFang SC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #FFFFFF;
+          }
+        }
+
+        .hospital_lable_box2 {
+          background: none;
+          border-radius: 10px 10px 10px 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 3px 7px;
+          border: 1px solid #5C8DEE;
+          opacity: 1;
+          margin-left: 12px;
+          margin-top: 8px;
+
+          .hospital_lable_text2 {
+            font-size: 24px;
+            font-family: PingFang SC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #5C8DEE;
+          }
+        }
+      }
+    }
+  }
+
+  .hospital_box + .hospital_box {
+    margin-top: 42px;
+  }
+}
+
+.desc-font {
+  @include pingfang-font(#333333, 26px, 400);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name-font {
+  @include pingfang-font(#333333, 48px, 500);
+}
+
+.level-font {
+  @include pingfang-font(#646464, 32px, 500);
+}
+
+.price-font {
+  @include pingfang-font(#3D5AF2, 26px, 450);
+}
+
+.link-font {
+  @include pingfang-font(#2574FF, 28px, 400);
+}
+
+.custom-color {
+  color: #1989fa;
+
+  .taroify-loading__text {
+    color: #1989fa;
+  }
+}
+
+.empty {
+  width: 100%;
+  padding: 0;
+
+  .taroify-empty__description {
+    padding: 0;
+    @include pingfang-font(#000000, 24px, 500);
+  }
+}
+
+.custom-empty__image {
+  width: 120px;
+  height: 120px;
+}
+
+.popup-details {
+  @include flex(column, flex-start, nowrap);
+  align-items: center;
+
+  .title {
+    padding: 32px;
+    @include pingfang-font(#000000, 28px, 500);
+  }
+
+  .about {
+    @include flex(row, flex-start, nowrap);
+    align-items: center;
+    margin-left: 20px;
+    margin-top: 24px;
+
+    .dot {
+      align-self: flex-start;
+      margin-right: 24px;
+      margin-top: 4px;
+    }
+
+    .details {
+      @include flex(column, flex-start, nowrap);
+
+      .dot-title {
+        @include pingfang-font(#000000, 32px, 500);
+      }
+
+      .desc {
+        margin-top: 12px;
+        @include pingfang-font(#333333, 26px, 400);
+      }
+    }
+  }
+}
