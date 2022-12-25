@@ -40,7 +40,7 @@ export default defineAppConfig({
       // 智能分诊
       root: "packages/triage",
       pages: [
-        // "pages/quickDept/index",
+        "pages/quickDept/index",
         "pages/selectHospital/index",
       ],
     },

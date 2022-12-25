@@ -1,15 +1,17 @@
 import { useMemo, useState } from 'react';
-import { isNil, get, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
+import { getCurrentInstance } from '@tarojs/taro';
 import { View, Image, Text } from '@tarojs/components';
-import { Dot } from '@/components';
-import { Avatar, Tag, Loading, Button, Empty, Popup, Search } from '@taroify/core';
+import { Loading, Search } from '@taroify/core';
+
 import { getRenderInfo } from './utils';
 import './index.scss';
 
 const id = '1';
 
 export default function SelectHospital() {
-  const [searchValue, setSearchValue] = useState<string>('');
+  const { dept }: any = getCurrentInstance().router?.params;
+  const [searchValue, setSearchValue] = useState<string>(dept);
   const [hospitals, setHospitals] = useState<any>();
 
   useMemo(async () => {
@@ -27,8 +29,8 @@ export default function SelectHospital() {
         className='search-box'
         onChange={(e) => setSearchValue(e.detail.value)}
       />
-      <View>
-        {hospitals?.map((v, i) => {
+      <View className='hospitals'>
+        {isEmpty(hospitals) ? <Loading type='spinner' className='custom-color' /> : hospitals?.map((v, i) => {
           return (
             <View className='hospital_box' key={i}>
               <Image

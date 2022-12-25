@@ -40,6 +40,7 @@
     "@tarojs/components": "3.5.7",
     "@tarojs/helper": "3.5.7",
     "@tarojs/plugin-framework-react": "3.5.7",
+    "@tarojs/plugin-html": "^3.5.10",
     "@tarojs/plugin-platform-alipay": "3.5.7",
     "@tarojs/plugin-platform-jd": "3.5.7",
     "@tarojs/plugin-platform-qq": "3.5.7",
@@ -55,6 +56,7 @@
     "form-data": "^4.0.0",
     "lodash": "^4.17.21",
     "react": "^18.0.0",
+    "react-chat-ui": "^0.4.0",
     "react-dom": "^18.0.0"
   },
   "devDependencies": {

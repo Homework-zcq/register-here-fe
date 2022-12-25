@@ -1,0 +1,92 @@
+@import "@/services/common.scss";
+
+@mixin apple-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: Apple SD Gothic Neo-Bold, Apple SD Gothic Neo;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+@mixin pingfang-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: PingFang SC-Semibold, PingFang SC;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+.page-quick-dept {
+  @include flex(column, flex-start, nowrap);
+  height: 100vh;
+  // @include gray-back();
+  // align-items: center;
+  .chat-container {
+    flex: 1;
+    margin-top: 24px;
+    padding: 0 24px;
+  }
+}
+.current-time {
+  @include pingfang-font(#9393AA, 26px, 400);
+  align-self: center;
+  margin-top: 24px;
+}
+
+.desc-font {
+  @include pingfang-font(#333333, 26px, 400);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name-font {
+  @include pingfang-font(#333333, 48px, 500);
+}
+
+.input {
+  border-radius: 12px;
+  background-color: #F0F0F0;
+  height: 64px;
+  flex: 1;
+  margin: 12px;
+  align-items: center;
+
+  input {
+    margin-left: 24px;
+    margin-top: 8px;
+  }
+}
+
+.field-btn {
+  border-radius: 14px;
+  background-color: #5C8DEE;
+  width: 64px;
+  height: 64px;
+}
+
+.recommend-box {
+  border: 2px #AAAAAA solid;
+  border-radius: 24px;
+  width: 70%;
+  align-self: center;
+  // flex: 1;
+  height: 140px;
+  margin-top: 36px;
+  margin-bottom: 100px;
+  transition: all 0.3s;
+  padding: 36px;
+
+  .title{
+    @include pingfang-font(#333333, 36px, 500);
+    margin-bottom: 42px;
+  }
+
+  .link {
+    @include pingfang-font(#2574FF, 36px, 500);
+    @include flex(row-reverse, flex-start, nowrap);
+    align-items: center;
+  }
+}
+
+.hidden {
+  display: none;
+}
