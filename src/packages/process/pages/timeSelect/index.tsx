@@ -1,12 +1,11 @@
 import { useMemo, useState } from 'react';
 import { isNil, get, isEmpty } from 'lodash';
 import { View, Text } from '@tarojs/components';
-import { getCurrentInstance } from '@tarojs/taro';
+import Taro, { getCurrentInstance } from '@tarojs/taro';
 import { Dot, PageLoading } from '@/components';
 import { Avatar, Tag, Loading, Button, Empty, Popup } from '@taroify/core';
 import { getRenderInfo, getWeekday } from './utils';
 import './index.scss';
-import Taro from '@tarojs/taro';
 
 interface currentPlaceInfo {
   date: string;
@@ -145,7 +144,7 @@ export default function TimeSelect() {
                       disabled={!v.count}
                       onClick={() => {
                         Taro.navigateTo({
-                          url: `/packages/process/pages/registerDetail/index`,
+                          url: `/packages/process/pages/registerDetail/index?doctorId=${doctorId}&placeId=${v.id}`,
                         })
                       }}
                     >
