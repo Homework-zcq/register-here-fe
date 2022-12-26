@@ -17,16 +17,16 @@ export default function Mine() {
 
   // 页面加载 获取用户数据 重新渲染
   useDidShow(() => {
-    // 获取用户申诉句
+    // 获取用户信息
     Taro.getStorage({
       key: "user",
       success: function (res) {
         if (res.data) {
           console.log(res.data);
           setUserInfo(res.data);
+          getCollected(res.data.id);
+          getVisittings(res.data.id);
         }
-        getCollected(res.data.id);
-        getVisittings(res.data.id);
       },
     });
   });
@@ -46,14 +46,14 @@ export default function Mine() {
     // 获取收藏医院
     await request.get(`/api/favorite-hospitals?${_query}`).then((res) => {
       // console.log("====getCollected_hospiatls_res", res.data.data[0].attributes.campuses.data[0]);
-      if(res.data.data[0]) {
+      if (res.data.data[0]) {
         collectedHosp = res.data.data[0].attributes.campuses.data.length;
       }
     });
     // 获取收藏医生
     await request.get(`/api/favorite-doctors?${_query}`).then((res) => {
       // console.log("====getCollected_doctors_res", res.data.data[0].attributes.doctors.data[0]);
-      if(res.data.data[0]) {
+      if (res.data.data[0]) {
         collectedDoc = res.data.data[0].attributes.doctors.data.length;
       }
     });
@@ -128,7 +128,7 @@ export default function Mine() {
                 className='func-line-little-box'
                 onClick={() =>
                   Taro.navigateTo({
-                    url: `/packages/mine/pages/myCollection/index`
+                    url: `/packages/mine/pages/myCollection/index`,
                   })
                 }
               >
@@ -136,7 +136,10 @@ export default function Mine() {
                 <Text className='func-name-font'>我的收藏</Text>
               </View>
               <View className='fuc-gray-line'></View>
-              <View className='func-line-little-box'>
+              <View className='func-line-little-box' onClick={() => Taro.navigateTo({
+                url:"/packages/mine/pages/visittings/index"
+              })}
+              >
                 <Text className='func-num-font'>{visittings}</Text>
                 <Text className='func-name-font'>就诊人管理</Text>
               </View>

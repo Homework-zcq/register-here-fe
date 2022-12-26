@@ -26,6 +26,7 @@ export default defineAppConfig({
       root: "packages/mine",
       pages: [
         "pages/myCollection/index",
+        "pages/visittings/index"
       ],
     },
     {

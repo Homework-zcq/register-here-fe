@@ -1,0 +1,69 @@
+@import "@/services/common.scss";
+
+@mixin pingfang-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: PingFang SC-Semibold, PingFang SC;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+.index {
+  @include gray-back();
+  @include flex(column, space-between);
+  padding-bottom: 80px;
+  box-sizing: border-box;
+  height: 100%;
+
+  .visittings-box {
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 20px;
+
+    .visitting-box {
+      width: 100%;
+      height: 130px;
+      padding-left: 40px;
+      padding-right: 40px;
+      box-sizing: border-box;
+      @include flex(row, space-between);
+      align-items: center;
+      margin-bottom: 20px;
+      margin-top: 20px;
+
+      .visitting-inf-box {
+        @include flex(row, flex-start, wrap);
+        width: 290px;
+        height: 100%;
+
+        .visitting-name {
+            @include pingfang-font(#333, 32px, 600);
+            margin-right: 24px;
+        }
+
+        .visitting-relation {
+            height: 40px;
+            border: 1px solid #2574FF;
+            padding-left: 8px;
+            padding-right: 8px;
+            box-sizing: border-box;
+            @include pingfang-font(#2574FF, 24px, 400);
+        }
+
+        .visitting-detail-inf {
+            @include pingfang-font(#6D6D6D, 28px, 600);
+            margin-top: 10px;
+        }
+      }
+
+      .edit-icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  .button {
+    @include btn(#5C8DEE);
+    border-radius: 40px;
+  }
+}

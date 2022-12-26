@@ -47,6 +47,7 @@ export type CollectedHspt = {
   address: string;
   logo: string;
 };
+
 // 院区信息
 export type campusInfo = {
   id: number;
@@ -91,5 +92,18 @@ export type hospitalInfo = {
     label: string[];
     logo: string;
     name: string;
+  };
+};
+
+// 就诊人信息
+export type Visitting = {
+  id: string;
+  attributes: {
+    id_num: string;
+    name: string;
+    phone: string;
+    relation: string;
+    gender: string;
+    age: number;
   };
 };
