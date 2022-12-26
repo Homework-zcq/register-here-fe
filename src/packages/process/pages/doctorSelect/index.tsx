@@ -27,7 +27,7 @@ export default function DoctorSelect() {
 
   const onTapDoctor = (e: number) => {
     Taro.navigateTo({
-      url: `/packages/process/pages/timeSelect/index?doctorId=${e}`,
+      url: `/packages/process/pages/timeSelect/index?doctorId=${e}&deptId=${deptId}`,
     })
   };
 

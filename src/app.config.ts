@@ -16,7 +16,6 @@ export default defineAppConfig({
       // 挂号
       root: "packages/register",
       pages: [
-        "pages/index/index",
         "pages/hospitalHome/index",
         "pages/hospitalDetail/index",
         "pages/departmentChoose/index"

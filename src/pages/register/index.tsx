@@ -31,7 +31,11 @@ export default function Index() {
         <Input className="search_input" type="text" placeholder="搜索医院..." />
       </View>
       <View className="ask_box">
-        <View className="ask_img_box">
+        <View className="ask_img_box" onClick={() => {
+          Taro.navigateTo({
+            url: `/packages/triage/pages/quickDept/index`,
+          })
+        }}>
           <Image className="ask_img" src={fen} />
         </View>
         <View className="ask_img_box">

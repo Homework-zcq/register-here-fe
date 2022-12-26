@@ -119,7 +119,7 @@ export default function departmentChoose() {
           onChange={(res) => {
             setValue(res);
             Taro.navigateTo({
-              url: `/packages/process/pages/doctorSelect/index?departmentId=${res}&campuseId=${campuseId}`,
+              url: `/packages/process/pages/doctorSelect/index?deptId=${res}&campuseId=${campuseId}`,
             })
           }}
         >

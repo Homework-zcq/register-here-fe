@@ -17,6 +17,7 @@ export const roomChinese = {
   NEIKE: "内科",
   FUKE: "妇科",
   WAIKE: "外科",
+  DACHANGWAIKE: "大肠外科",
   GUKE: "骨科",
   FUCHANKE: "妇产科",
   FUNÜBAOJIAN: "妇女保健科",

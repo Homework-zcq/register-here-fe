@@ -2,12 +2,26 @@ import request from "@/services/request";
 import qs from "qs";
 import { pick, get, groupBy } from "lodash";
 
-export const getRenderInfo = async (docId: string) => {
+export const getRenderInfo = async (docId: string, deptId: string) => {
   const _query = qs.stringify({
-    populate: "*",
+    populate: {
+      department: {
+        populate: {
+          campus: {
+            populate: "*"
+          }
+        }
+      },
+      doctor: {
+        populate: "*"
+      }
+    },
     filters: {
       doctor: {
         id: { $eq: docId },
+      },
+      department: {
+        id: { $eq: deptId },
       },
     },
   });
