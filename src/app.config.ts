@@ -27,7 +27,8 @@ export default defineAppConfig({
       pages: [
         "pages/myCollection/index",
         "pages/visittings/index",
-        "pages/visittingDetail/index"
+        "pages/visittingDetail/index",
+        "pages/createVisitting/index"
       ],
     },
     {

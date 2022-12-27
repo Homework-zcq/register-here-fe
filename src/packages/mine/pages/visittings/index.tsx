@@ -95,7 +95,16 @@ export default function Visittings() {
           })}
       </View>
 
-      <View className='button'>添加就诊人</View>
+      <View
+        className='button'
+        onClick={() => {
+          Taro.navigateTo({
+            url: "/packages/mine/pages/createVisitting/index",
+          });
+        }}
+      >
+        添加就诊人
+      </View>
     </View>
   );
 }

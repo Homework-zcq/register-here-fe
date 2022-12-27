@@ -110,7 +110,17 @@ export default function Home() {
       {/* 欢迎栏 */}
       <View className='welcome-bar'>
         <Text className='welcome-font'>{welcome}</Text>
-        {avatar && <Image src={avatar} className='avatar' />}
+        {avatar && (
+          <Image
+            src={avatar}
+            className='avatar'
+            onClick={() =>
+              Taro.switchTab({
+                url: "/pages/mine/index",
+              })
+            }
+          />
+        )}
       </View>
       {/* 预约栏 */}
       {register != "" && (
@@ -128,7 +138,7 @@ export default function Home() {
         indicatorActiveColor='#317CF4'
         indicatorColor='rgba(49, 124, 244, .55)'
       >
-        <SwiperItem className='ad-box'> 
+        <SwiperItem className='ad-box'>
           <Image src={banner1} className='ad-img' />
         </SwiperItem>
         <SwiperItem className='ad-box'>
