@@ -125,21 +125,28 @@ export default function registerConfirm() {
         </View>
         <View className="item_box">
           <Text className="item_title">就诊日期</Text>
-          <Text className="item_text">{`${register?.attributes.date} ${getWeekday(register?.attributes.date)} ${
+          <Text className="item_text">{`${
+            register?.attributes.date
+          } ${getWeekday(register?.attributes.date)} ${
             register?.attributes.time_period == "am" ? "上午" : "下午"
           }`}</Text>
         </View>
         <View className="item_box">
           <Text className="item_title">挂号费用</Text>
-          <Text className="item_text">
-            {register?.attributes.price + "元"}
-          </Text>
+          <Text className="item_text">{register?.attributes.price + "元"}</Text>
         </View>
       </View>
       <View className="visiting_box">
         <View className="title_box">
           <Text className="title">就诊人</Text>
-          <View className="add_box">
+          <View
+            className="add_box"
+            onClick={() => {
+              Taro.navigateTo({
+                url: "/packages/mine/pages/createVisitting/index",
+              });
+            }}
+          >
             <Image src={add} className="add_icon" />
             <Text className="add_text">添加就诊人</Text>
           </View>

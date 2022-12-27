@@ -238,7 +238,6 @@ export default function HospitalHome() {
             <Picker
               mode="selector"
               range={selector}
-              value={campuseChoosed}
               onChange={(val) => {
                 setCampuseChoosed(Number(val.detail.value));
               }}
