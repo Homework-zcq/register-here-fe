@@ -38,6 +38,8 @@ export default defineAppConfig({
         "pages/doctorSelect/index",
         "pages/timeSelect/index",
         "pages/registerDetail/index",
+        "pages/registerConfirm/index",
+        "pages/registerSuccess/index",
       ],
     },
     {

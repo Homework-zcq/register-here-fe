@@ -175,7 +175,9 @@ export default function Home() {
         })}
       </View>
       {/* 在线问诊入口 */}
-      <View className='ask-box'>
+      <View className='ask-box'  onClick={() => Taro.navigateTo({
+            url: "/packages/mine/pages/createVisitting/index",
+          })}>
         <Image src={ask} className='ask-img' />
         <Text className='ask-header'>在线问诊</Text>
         <Text className='ask-hint'>感冒头疼、疑难杂症统统全搞定～</Text>

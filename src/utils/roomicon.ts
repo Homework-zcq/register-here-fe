@@ -49,3 +49,11 @@ export const roomChinese = {
   ZHONGZHENGJIANHU: "重症监护室(综合)",
   OTHER: "其它",
 };
+export const relationList = {
+  SELF: "本人",
+  CHILD: "子女",
+  PARENT: "父母",
+  BRO: "兄、弟、姐、妹",
+  ELSE: "其他",
+  COUPLE: "配偶"
+}

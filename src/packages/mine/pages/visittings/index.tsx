@@ -40,14 +40,13 @@ export default function Visittings() {
   };
 
   return (
-    <View className='index'>
-      <View className='visittings-box'>
+    <View className="index">
+      <View className="visittings-box">
         {visittingList &&
           visittingList.map((val, index) => {
             const data = val.attributes;
             data.gender = data.gender === "FEMALE" ? "女" : "男";
             const id = val.id;
-            console.log(data.name, data.name.length);
             return (
               <View
                 key={index}
@@ -64,22 +63,22 @@ export default function Visittings() {
                       data.name.charAt(data.name.length - 1)}
                   </Text>
                   {data.relation === "SELF" && (
-                    <Text className='visitting-relation'>本人</Text>
+                    <Text className="visitting-relation">本人</Text>
                   )}
                   {data.relation === "ELSE" && (
-                    <Text className='visitting-relation'>其他</Text>
+                    <Text className="visitting-relation">其他</Text>
                   )}
                   {data.relation === "BRO" && (
-                    <Text className='visitting-relation'>兄、弟、姐、妹</Text>
+                    <Text className="visitting-relation">兄、弟、姐、妹</Text>
                   )}
                   {data.relation === "PARENT" && (
-                    <Text className='visitting-relation'>父母</Text>
+                    <Text className="visitting-relation">父母</Text>
                   )}
                   {data.relation === "CHILD" && (
-                    <Text className='visitting-relation'>子女</Text>
+                    <Text className="visitting-relation">子女</Text>
                   )}
                   {data.relation === "COUPLE" && (
-                    <Text className='visitting-relation'>配偶</Text>
+                    <Text className="visitting-relation">配偶</Text>
                   )}
                   <Text className='visitting-detail-inf'>
                     {data.gender +
@@ -89,7 +88,7 @@ export default function Visittings() {
                       data.phone.replace(/(\d{3})\d*(\d{4})/, "$1****$2")}
                   </Text>
                 </View>
-                <Image src={edit} className='edit-icon' />
+                <Image src={edit} className="edit-icon" />
               </View>
             );
           })}

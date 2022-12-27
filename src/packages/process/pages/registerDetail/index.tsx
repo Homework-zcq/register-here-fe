@@ -1,11 +1,11 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Taro, { getCurrentInstance } from "@tarojs/taro";
-import { PageLoading } from "@/components";
 import { View, Text, Image } from "@tarojs/components";
-import { Avatar, Tag, Button, Loading } from "@taroify/core";
+import { Button } from "@taroify/core";
 import "./index.scss";
 
 export default function registerDetail() {
+  const { placeId = 1 }: any = getCurrentInstance().router?.params;
   const [read, setRead] = useState(false);
   return (
     <View className="container">
@@ -44,7 +44,14 @@ export default function registerDetail() {
           我已阅读并同意<Text className="blue_text">《关于网络挂号须知》</Text>
         </Text>
       </View>
-      <Button className="btn">
+      <Button
+        className="btn"
+        onClick={() => {
+          Taro.navigateTo({
+            url: `/packages/process/pages/registerConfirm/index?placeId=${placeId}`,
+          });
+        }}
+      >
         <Text className="btn_text">选择就诊人</Text>
       </Button>
     </View>

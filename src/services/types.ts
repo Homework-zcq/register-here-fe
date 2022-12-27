@@ -107,3 +107,42 @@ export type Visitting = {
     age: number;
   };
 };
+export type registerInfo = {
+  attributes: {
+    count: number;
+    date: string;
+    time_period: string;
+    price: number;
+    department: {
+      data: {
+        attributes: {
+          campus: {
+            data: {
+              attributes: {
+                hospital: {
+                  data: {
+                    attributes: {
+                      name: string;
+                    };
+                  };
+                };
+                name: string;
+              };
+            };
+          };
+          category: string;
+          name: string;
+        };
+      };
+    };
+    doctor: {
+      data: {
+        attributes: {
+          name: string;
+          role: string;
+        };
+      };
+    };
+  };
+  id: number;
+};

@@ -150,7 +150,7 @@ export default function TimeSelect() {
                       disabled={!v.count}
                       onClick={() => {
                         Taro.navigateTo({
-                          url: `/packages/process/pages/registerDetail/index?doctorId=${doctorId}&placeId=${v.id}&deptId=${deptId}`,
+                          url: `/packages/process/pages/registerDetail/index?placeId=${v.id}`,
                         });
                       }}
                     >
