@@ -53,7 +53,7 @@ export default {
     let option = { url, data }
     return this.baseOptions(option)
   },
-  post: function (url, data?: object | string, contentType?: string) {
+  post(url, data?: object | string, contentType?: string) {
     let params = { url, data, contentType }
     return this.baseOptions(params, 'POST')
   },

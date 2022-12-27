@@ -47,12 +47,21 @@ export default function Visittings() {
             const data = val.attributes;
             data.gender = data.gender === "FEMALE" ? "女" : "男";
             const id = val.id;
-            console.log(data.name, data.name.length)
+            console.log(data.name, data.name.length);
             return (
-              <View key={index} className='visitting-box'>
+              <View
+                key={index}
+                className='visitting-box'
+                onClick={() =>
+                  Taro.navigateTo({
+                    url: `/packages/mine/pages/visittingDetail/index?visittingId=${id}`,
+                  })
+                }
+              >
                 <View className='visitting-inf-box'>
                   <Text className='visitting-name'>
-                    {new Array(data.name.length).join("*") + data.name.charAt(data.name.length-1)}
+                    {new Array(data.name.length).join("*") +
+                      data.name.charAt(data.name.length - 1)}
                   </Text>
                   {data.relation === "SELF" && (
                     <Text className='visitting-relation'>本人</Text>
@@ -73,12 +82,12 @@ export default function Visittings() {
                     <Text className='visitting-relation'>配偶</Text>
                   )}
                   <Text className='visitting-detail-inf'>
-                  {data.gender +
-                    " " +
-                    data.age +
-                    "岁，" +
-                    data.phone.replace(/(\d{3})\d*(\d{4})/, "$1****$2")}
-                </Text>
+                    {data.gender +
+                      " " +
+                      data.age +
+                      "岁，" +
+                      data.phone.replace(/(\d{3})\d*(\d{4})/, "$1****$2")}
+                  </Text>
                 </View>
                 <Image src={edit} className='edit-icon' />
               </View>

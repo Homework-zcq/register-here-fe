@@ -47,43 +47,43 @@ export default function TimeSelect() {
   };
 
   return (
-    <View className="page-time-select">
+    <View className='page-time-select'>
       {loading ? (
         <PageLoading />
       ) : (
         <>
-          <View className="current-doctor">
-            <View className="doctor">
+          <View className='current-doctor'>
+            <View className='doctor'>
               <Avatar
-                src="https://i.328888.xyz/2022/12/24/DbJpc.png"
-                size="large"
+                src='https://i.328888.xyz/2022/12/24/DbJpc.png'
+                size='large'
                 style={{ marginRight: "12px" }}
               />
-              <View className="doctor-details">
-                <Text className="name-font">{doctor.name}</Text>
-                <View className="level">
-                  <Text className="level-font">{doctor.role}</Text>
-                  <Text className="link-font" onClick={() => setOpen(true)}>
+              <View className='doctor-details'>
+                <Text className='name-font'>{doctor.name}</Text>
+                <View className='level'>
+                  <Text className='level-font'>{doctor.role}</Text>
+                  <Text className='link-font' onClick={() => setOpen(true)}>
                     {"查看简介 >"}
                   </Text>
                 </View>
               </View>
             </View>
-            <View className="expert-at">
-              <View className="tag-wrapper">
-                <Tag color="primary" variant="outlined" size="medium">
+            <View className='expert-at'>
+              <View className='tag-wrapper'>
+                <Tag color='primary' variant='outlined' size='medium'>
                   专业擅长
                 </Tag>
               </View>
-              <Text className="desc desc-font">{doctor.desc}</Text>
+              <Text className='desc desc-font'>{doctor.desc}</Text>
             </View>
-            <View className="current-visiting">
-              <View className="tag-wrapper">
-                <Tag color="warning" variant="outlined" size="medium">
+            <View className='current-visiting'>
+              <View className='tag-wrapper'>
+                <Tag color='warning' variant='outlined' size='medium'>
                   选择科室
                 </Tag>
               </View>
-              <Text className="desc desc-font">{`${
+              <Text className='desc desc-font'>{`${
                 dept.campus.data.attributes.hospital.data.attributes.name
               }(${dept.campus.data.attributes.name})-${
                 roomChinese[dept.category]
@@ -91,11 +91,11 @@ export default function TimeSelect() {
             </View>
           </View>
 
-          <View className="select-time">
-            <Dot color="blue" />
+          <View className='select-time'>
+            <Dot color='blue' />
             <Text>选择日期</Text>
           </View>
-          <View className="pick-date">
+          <View className='pick-date'>
             {!isNil(places) ? (
               Object.entries(places).map((v, i) => {
                 const isAvailable =
@@ -110,8 +110,8 @@ export default function TimeSelect() {
                     }`}
                     onClick={() => selectTime(v[0])}
                   >
-                    <Text className="week">{getWeekday(v[0])}</Text>
-                    <Text className="date">{v[0].slice(5)}</Text>
+                    <Text className='week'>{getWeekday(v[0])}</Text>
+                    <Text className='date'>{v[0].slice(5)}</Text>
                     <Text className={isAvailable ? "status" : "disabled"}>
                       {isAvailable ? "有号" : "无号"}
                     </Text>
@@ -119,34 +119,34 @@ export default function TimeSelect() {
                 );
               })
             ) : (
-              <Loading type="spinner" className="custom-color" />
+              <Loading type='spinner' className='custom-color' />
             )}
           </View>
 
-          <View className="current-place">
+          <View className='current-place'>
             <View>当前选择：{currentPlace.date || "未选择"}</View>
             {!isEmpty(currentPlace.date) && currentPlace.available ? (
               currentPlace.period_info?.map((v, i) => (
-                <View key={i} className="period-pick">
+                <View key={i} className='period-pick'>
                   <Text style={{ marginLeft: "12px" }}>
                     {v.time_period === "am" ? "上午" : "下午"}
                   </Text>
-                  <View className="details">
+                  <View className='details'>
                     <Text
                       style={{ marginRight: "12px" }}
-                      className="price-font"
+                      className='price-font'
                     >
                       ¥50
                     </Text>
                     <Button
-                      size="mini"
+                      size='mini'
                       style={{
                         backgroundColor: "#5C8DEE",
                         color: "#fff",
                         width: "80px",
                         height: "28px",
                       }}
-                      shape="round"
+                      shape='round'
                       disabled={!v.count}
                       onClick={() => {
                         Taro.navigateTo({
@@ -160,10 +160,10 @@ export default function TimeSelect() {
                 </View>
               ))
             ) : (
-              <Empty className="empty">
+              <Empty className='empty'>
                 <Empty.Image
-                  className="custom-empty__image"
-                  src="https://img.yzcdn.cn/vant/custom-empty-image.png"
+                  className='custom-empty__image'
+                  src='https://img.yzcdn.cn/vant/custom-empty-image.png'
                 />
                 <Empty.Description>
                   {!currentPlace.available
@@ -173,29 +173,29 @@ export default function TimeSelect() {
               </Empty>
             )}
           </View>
-          <Popup open={open} placement="bottom" style={{ height: "30%" }}>
+          <Popup open={open} placement='bottom' style={{ height: "30%" }}>
             {/* <Popup.Close onClick={() => setOpen(false)} /> */}
             <Popup.Backdrop onClick={() => setOpen(false)} />
-            <View className="popup-details">
-              <Text className="title">医生简介</Text>
+            <View className='popup-details'>
+              <Text className='title'>医生简介</Text>
 
-              <View className="about">
-                <View className="dot">
-                  <Dot color="blue" />
+              <View className='about'>
+                <View className='dot'>
+                  <Dot color='blue' />
                 </View>
-                <View className="details">
-                  <Text className="dot-title">简介</Text>
-                  <Text className="desc">{doctor.desc}</Text>
+                <View className='details'>
+                  <Text className='dot-title'>简介</Text>
+                  <Text className='desc'>{doctor.desc}</Text>
                 </View>
               </View>
 
-              <View className="about">
-                <View className="dot">
-                  <Dot color="blue" />
+              <View className='about'>
+                <View className='dot'>
+                  <Dot color='blue' />
                 </View>
-                <View className="details">
-                  <Text className="dot-title">擅长</Text>
-                  <Text className="desc">{doctor.desc}</Text>
+                <View className='details'>
+                  <Text className='dot-title'>擅长</Text>
+                  <Text className='desc'>{doctor.desc}</Text>
                 </View>
               </View>
             </View>
