@@ -3,7 +3,9 @@ import { View, Text, Image, Swiper, SwiperItem } from "@tarojs/components";
 import Taro, { useDidShow } from "@tarojs/taro";
 import { useState } from "react";
 import hint from "@/assets/img/hint.png";
-import ad from "@/assets/img/ad.png";
+import banner1 from "@/assets/img/banner1.png";
+import banner2 from "@/assets/img/banner2.png";
+import banner3 from "@/assets/img/banner3.png";
 import gold from "@/assets/icon/gold.png";
 import silver from "@/assets/icon/silver.png";
 import bronze from "@/assets/icon/bronze.png";
@@ -104,61 +106,58 @@ export default function Home() {
   });
 
   return (
-    <View className="index">
+    <View className='index'>
       {/* 欢迎栏 */}
-      <View className="welcome-bar">
-        <Text className="welcome-font">{welcome}</Text>
-        {avatar && <Image src={avatar} className="avatar" />}
+      <View className='welcome-bar'>
+        <Text className='welcome-font'>{welcome}</Text>
+        {avatar && <Image src={avatar} className='avatar' />}
       </View>
       {/* 预约栏 */}
       {register != "" && (
-        <View className="register-hint-bar">
-          <Image src={hint} className="register-hint-img" />
-          <Text className="register-hint-font">{register}</Text>
+        <View className='register-hint-bar'>
+          <Image src={hint} className='register-hint-img' />
+          <Text className='register-hint-font'>{register}</Text>
         </View>
       )}
       {/* 广告位 */}
       <Swiper
-        className="swiper"
+        className='swiper'
         circular
         autoplay
         indicatorDots
-        indicatorActiveColor="#317CF4"
-        indicatorColor="rgba(49, 124, 244, .55)"
+        indicatorActiveColor='#317CF4'
+        indicatorColor='rgba(49, 124, 244, .55)'
       >
-        <SwiperItem className="ad-box">
-          <Text className="ad-font">广告位</Text>
-          <Image src={ad} className="ad-img" />
+        <SwiperItem className='ad-box'> 
+          <Image src={banner1} className='ad-img' />
         </SwiperItem>
-        <SwiperItem className="ad-box">
-          <Text className="ad-font">广告位</Text>
-          <Image src={ad} className="ad-img" />
+        <SwiperItem className='ad-box'>
+          <Image src={banner2} className='ad-img' />
         </SwiperItem>
-        <SwiperItem className="ad-box">
-          <Text className="ad-font">广告位</Text>
-          <Image src={ad} className="ad-img" />
+        <SwiperItem className='ad-box'>
+          <Image src={banner3} className='ad-img' />
         </SwiperItem>
       </Swiper>
       {/* 热门医生 */}
-      <View className="recommend-box">
+      <View className='recommend-box'>
         <View
-          className="recommend-title-box"
+          className='recommend-title-box'
           onClick={() =>
             Taro.switchTab({
               url: "/pages/register/index",
             })
           }
         >
-          <Text className="recommend-title-header">热门医生</Text>
-          <Text className="recommend-hint">{"前往挂号预约>"}</Text>
+          <Text className='recommend-title-header'>热门医生</Text>
+          <Text className='recommend-hint'>{"前往挂号预约>"}</Text>
         </View>
         {doctorList?.map((val, index) => {
           return (
-            <View key={index} className="recommend-little-box">
-              {index === 0 && <Image src={gold} className="recommend-icon" />}
-              {index === 1 && <Image src={silver} className="recommend-icon" />}
-              {index === 2 && <Image src={bronze} className="recommend-icon" />}
-              <Text className="recommend-font">
+            <View key={index} className='recommend-little-box'>
+              {index === 0 && <Image src={gold} className='recommend-icon' />}
+              {index === 1 && <Image src={silver} className='recommend-icon' />}
+              {index === 2 && <Image src={bronze} className='recommend-icon' />}
+              <Text className='recommend-font'>
                 {val.name + "-" + val.dept + "专家"}
               </Text>
             </View>
@@ -166,13 +165,13 @@ export default function Home() {
         })}
       </View>
       {/* 在线问诊入口 */}
-      <View className="ask-box">
-        <Image src={ask} className="ask-img" />
-        <Text className="ask-header">在线问诊</Text>
-        <Text className="ask-hint">感冒头疼、疑难杂症统统全搞定～</Text>
+      <View className='ask-box'>
+        <Image src={ask} className='ask-img' />
+        <Text className='ask-header'>在线问诊</Text>
+        <Text className='ask-hint'>感冒头疼、疑难杂症统统全搞定～</Text>
       </View>
       {/* 缓冲问诊图片带margin-bottom造成的底部留白 */}
-      <View style="height:82px"></View>
+      <View style='height:82px'></View>
     </View>
   );
 }
