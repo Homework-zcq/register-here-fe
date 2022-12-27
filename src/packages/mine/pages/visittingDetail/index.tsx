@@ -62,6 +62,7 @@ export default function VisittingDetail() {
             icon: "success",
             duration: 2000,
           });
+          getVisitting();
         } else {
           throw "err";
         }

@@ -59,7 +59,7 @@ export default function CreateVisitting() {
   const [name, setName] = useState("");
   const [IDNum, setIDNum] = useState("");
   const [phone, setPhone] = useState("");
-  const relationList = ["配偶", "子女", "父母", "兄、弟、姐、妹"];
+  const relationList = ["配偶", "子女", "父母", "兄、弟、姐、妹", "其他"];
   const relationEnglish = ["COUPLE", "CHILD", "PARENT", "BRO", "ELSE"];
   const commit = () => {
     if (name == "") {
