@@ -136,9 +136,13 @@ export default function Mine() {
                 <Text className='func-name-font'>我的收藏</Text>
               </View>
               <View className='fuc-gray-line'></View>
-              <View className='func-line-little-box' onClick={() => Taro.navigateTo({
-                url:"/packages/mine/pages/visittings/index"
-              })}
+              <View
+                className='func-line-little-box'
+                onClick={() =>
+                  Taro.navigateTo({
+                    url: "/packages/mine/pages/visittings/index",
+                  })
+                }
               >
                 <Text className='func-num-font'>{visittings}</Text>
                 <Text className='func-name-font'>就诊人管理</Text>
@@ -146,7 +150,12 @@ export default function Mine() {
             </View>
             {/* 订单管理 */}
             <View className='func-color-box'>
-              <View className='func-color-little-box'>
+              <View
+                className='func-color-little-box'
+                onClick={() =>
+                  Taro.navigateTo({ url: "/packages/mine/pages/myOrder/index" })
+                }
+              >
                 <Text className='func-color-font'>挂号记录</Text>
                 <Image src={register} className='func-color-img register-img' />
               </View>

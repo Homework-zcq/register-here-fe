@@ -1,0 +1,56 @@
+@import "@/services/common.scss";
+
+@mixin pingfang-font($color, $font-size, $font-weight) {
+  font-size: $font-size;
+  font-family: PingFang SC-Semibold, PingFang SC;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+.index {
+  @include gray-back();
+  @include flex(column, flex-start);
+  background-color: #fff;
+  align-items: center;
+
+  .nav-box {
+    @include flex(row, space-between);
+    width: 100%;
+    height: 60px;
+    padding-left: 118px;
+    padding-right: 118px;
+    box-sizing: border-box;
+    margin-top: 20px;
+
+    .nav-choosed {
+      height: 100%;
+      width: 100px;
+      @include pingfang-font(#000, 32px, 600);
+      border-bottom: 4px solid #000;
+    }
+
+    .nav-unchoosed {
+      width: 100px;
+      @include pingfang-font(#aaa, 32px, 600);
+    }
+  }
+
+  
+
+  .null-box {
+    width: 488px;
+    height: 412px;
+    @include flex(column, space-between, nowrap);
+    align-items: center;
+    margin-top: 50px;
+
+    .null-img {
+      width: 468px;
+      height: 354px;
+    }
+
+    .null-font {
+      @include pingfang-font(#333, 32px, 400);
+    }
+  }
+}
