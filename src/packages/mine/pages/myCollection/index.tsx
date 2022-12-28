@@ -131,7 +131,7 @@ export default function Collection() {
       {type === "我的医生" && doctorList !== null &&
         doctorList?.map((val, key) => {
           return (
-            <View key={key} className='doctor-box'>
+            <View key={"doctor" + key} className='doctor-box'>
               <Image src={val.attributes.avatar} className='doctor-avatar' />
               <Text className='doctor-name'>{val.attributes.name}</Text>
               <Text className='doctor-intro'>{val.attributes.desc}</Text>
@@ -142,7 +142,7 @@ export default function Collection() {
       {type === "我的医院" && hsptList !== null &&
         hsptList?.map((val, key) => {
             return (
-                <View key={key} className='hspt-box'>
+                <View key={"hsp" + key} className='hspt-box'>
                     <Image src={val.logo} className='hspt-logo' />
                     <Text className='hspt-address'>{'地址：' + val.address}</Text>
                     <Text className='hspt-name'>{val.name}</Text>

@@ -7,7 +7,7 @@ import search from "@/assets/img/search.png";
 import Taro, { getCurrentInstance, useLoad } from "@tarojs/taro";
 import { campusInfo } from "@/services/types";
 import request from "@/services/request";
-import { TreeSelect } from "@taroify/core";
+import { Loading, TreeSelect } from "@taroify/core";
 import { roomChinese } from "@/utils/roomicon";
 
 export default function departmentChoose() {
@@ -110,29 +110,36 @@ export default function departmentChoose() {
       </View>
       <View className="select">
         <Text className="select_title">去挂号</Text>
-        <TreeSelect
-          tabValue={tabValue}
-          value={value}
-          onTabChange={(res) => {
-            setTabValue(res);
-          }}
-          onChange={(res) => {
-            setValue(res);
-            Taro.navigateTo({
-              url: `/packages/process/pages/doctorSelect/index?deptId=${res}&campuseId=${campuseId}`,
-            })
-          }}
-        >
-          {departments.map((val) => (
-            <TreeSelect.Tab title={roomChinese[val.name]} key={val.name}>
-              {val.department.map((item) => (
-                <TreeSelect.Option key={item.id + "department"} value={item.id}>
-                  {item.name}
-                </TreeSelect.Option>
-              ))}
-            </TreeSelect.Tab>
-          ))}
-        </TreeSelect>
+        {departments.length == 0 ? (
+          <Loading type="spinner" className="custom-color" />
+        ) : (
+          <TreeSelect
+            tabValue={tabValue}
+            value={value}
+            onTabChange={(res) => {
+              setTabValue(res);
+            }}
+            onChange={(res) => {
+              setValue(res);
+              Taro.navigateTo({
+                url: `/packages/process/pages/doctorSelect/index?deptId=${res}&campuseId=${campuseId}`,
+              });
+            }}
+          >
+            {departments.map((val) => (
+              <TreeSelect.Tab title={roomChinese[val.name]} key={val.name}>
+                {val.department.map((item) => (
+                  <TreeSelect.Option
+                    key={item.id + "department"}
+                    value={item.id}
+                  >
+                    {item.name}
+                  </TreeSelect.Option>
+                ))}
+              </TreeSelect.Tab>
+            ))}
+          </TreeSelect>
+        )}
       </View>
     </View>
   );

@@ -47,7 +47,11 @@ export default function Index() {
         <Text className='title'>按科室挂号</Text>
         <View className='room_class'>
           {roomList.map((val) => (
-            <View className='room_card' key={"room" + val.name}>
+            <View className='room_card' key={"room" + val.name} onClick={() => {
+              Taro.navigateTo({
+                url: `/packages/triage/pages/selectHospital/index?dept=${val.name}`,
+              })
+            }}>
               <Image className='room_icon' src={val.img} />
               <Text className='room_name'>{val.name}</Text>
             </View>

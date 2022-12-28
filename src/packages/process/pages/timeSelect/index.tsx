@@ -178,7 +178,6 @@ export default function TimeSelect() {
             <Popup.Backdrop onClick={() => setOpen(false)} />
             <View className='popup-details'>
               <Text className='title'>医生简介</Text>
-
               <View className='about'>
                 <View className='dot'>
                   <Dot color='blue' />

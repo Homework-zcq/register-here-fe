@@ -115,6 +115,7 @@ export type registerInfo = {
     price: number;
     department: {
       data: {
+        id: number;
         attributes: {
           campus: {
             data: {
@@ -137,6 +138,7 @@ export type registerInfo = {
     };
     doctor: {
       data: {
+        id: number;
         attributes: {
           name: string;
           role: string;

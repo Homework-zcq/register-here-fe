@@ -42,6 +42,9 @@ export default function HospitalHome() {
     getFavorite();
   });
   const getCampuses = () => {
+    Taro.showLoading({
+      title: "加载中"
+    })
     const query = qs.stringify({
       populate: {
         hospital: {
@@ -53,6 +56,7 @@ export default function HospitalHome() {
       },
     });
     request.get(`/api/campuses?${query}`).then((res) => {
+      Taro.hideLoading()
       setHospital(res.data.data[0].attributes.hospital.data);
       let t: any[] = [];
       const list =
@@ -249,7 +253,15 @@ export default function HospitalHome() {
           </View>
           <View className="room_class">
             {roomList.map((val) => (
-              <View className="room_card" key={"room" + val.name}>
+              <View
+                className="room_card"
+                key={"room" + val.name}
+                onClick={() => {
+                  Taro.navigateTo({
+                    url: `/packages/triage/pages/selectHospital/index?dept=${val.name}`,
+                  });
+                }}
+              >
                 <Image className="room_icon" src={val.img} />
                 <Text className="room_name">{val.name}</Text>
               </View>

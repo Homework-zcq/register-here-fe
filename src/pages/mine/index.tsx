@@ -90,82 +90,91 @@ export default function Mine() {
   };
 
   return (
-    <View className='index'>
+    <View className="index">
       {userInfo !== null && (
         <>
-          <View className='inf-box'>
+          <View className="inf-box">
             {/* 头像&&用户名&&账号 */}
-            <View className='inf-detail-box'>
+            <View className="inf-detail-box">
               <Image
                 src={userInfo?.avatar ? userInfo.avatar : unlogged_avatar}
-                className='avatar'
+                className="avatar"
               />
-              <Text className='inf-detail-header'>
+              <Text className="inf-detail-header">
                 {"Hi, " + userInfo?.name}
               </Text>
-              <Text className='inf-detail-font'>{"账号: " + userInfo?.id}</Text>
+              <Text className="inf-detail-font">{"账号: " + userInfo?.id}</Text>
             </View>
             {/* role */}
             {userInfo && userInfo?.role === "Expert" && (
-              <View className='role-box'>
-                <Text className='role-header'>资深专家</Text>
-                <Text className='role-font'>{"优先推荐中>>"}</Text>
+              <View className="role-box">
+                <Text className="role-header">资深专家</Text>
+                <Text className="role-font">{"优先推荐中>>"}</Text>
               </View>
             )}
             {(!userInfo || userInfo?.role !== "Expert") && (
-              <View className='role-box'>
-                <Text className='role-header'>普通用户</Text>
-                <Text className='role-font'>{"点击认证专家>>"}</Text>
+              <View className="role-box">
+                <Text className="role-header">普通用户</Text>
+                <Text className="role-font">{"点击认证专家>>"}</Text>
               </View>
             )}
-            <Image src={doctor} className='img' />
+            <Image src={doctor} className="img" />
           </View>
-          <View className='gray-line'></View>
-          <View className='func-box'>
+          <View className="gray-line"></View>
+          <View className="func-box">
             {/* 我的收藏&&就诊人管理 */}
-            <View className='func-line-box'>
+            <View className="func-line-box">
               <View
-                className='func-line-little-box'
+                className="func-line-little-box"
                 onClick={() =>
                   Taro.navigateTo({
                     url: `/packages/mine/pages/myCollection/index`,
                   })
                 }
               >
-                <Text className='func-num-font'>{collected}</Text>
-                <Text className='func-name-font'>我的收藏</Text>
+                <Text className="func-num-font">{collected}</Text>
+                <Text className="func-name-font">我的收藏</Text>
               </View>
-              <View className='fuc-gray-line'></View>
+              <View className="fuc-gray-line"></View>
               <View
-                className='func-line-little-box'
+                className="func-line-little-box"
                 onClick={() =>
                   Taro.navigateTo({
                     url: "/packages/mine/pages/visittings/index",
                   })
                 }
               >
-                <Text className='func-num-font'>{visittings}</Text>
-                <Text className='func-name-font'>就诊人管理</Text>
+                <Text className="func-num-font">{visittings}</Text>
+                <Text className="func-name-font">就诊人管理</Text>
               </View>
             </View>
             {/* 订单管理 */}
-            <View className='func-color-box'>
+            <View className="func-color-box">
               <View
-                className='func-color-little-box'
+                className="func-color-little-box"
                 onClick={() =>
                   Taro.navigateTo({ url: "/packages/mine/pages/myOrder/index" })
                 }
               >
-                <Text className='func-color-font'>挂号记录</Text>
-                <Image src={register} className='func-color-img register-img' />
+                <Text className="func-color-font">挂号记录</Text>
+                <Image src={register} className="func-color-img register-img" />
               </View>
-              <View className='func-color-little-box'>
-                <Text className='func-color-font'>问诊记录</Text>
-                <Image src={ask} className='func-color-img ask-img' />
+              <View
+                className="func-color-little-box"
+                onClick={() => {
+                  Taro.showToast({
+                    title: "暂不支持",
+                    icon: "error",
+                    duration: 1000,
+                  });
+                }}
+              >
+                <Text className="func-color-font">问诊记录</Text>
+                <Image src={ask} className="func-color-img ask-img" />
               </View>
             </View>
             {/* 退出登录按钮 */}
-            <View className='log-out-btn' onClick={() => logout()}>
+            <View className="log-out-btn" onClick={() => logout()}>
               退出登录
             </View>
           </View>
@@ -174,26 +183,26 @@ export default function Mine() {
       {/* 未登录 */}
       {userInfo === null && (
         <>
-          <View className='inf-box'>
+          <View className="inf-box">
             {/* 头像&&用户名&&账号 */}
-            <View className='inf-detail-box'>
-              <Image src={unlogged_avatar} className='avatar' />
-              <Text className='inf-detail-header'>Hi, 你好～</Text>
+            <View className="inf-detail-box">
+              <Image src={unlogged_avatar} className="avatar" />
+              <Text className="inf-detail-header">Hi, 你好～</Text>
             </View>
             {/* role */}
             <View
-              className='role-box'
+              className="role-box"
               onClick={() => {
                 console.log(111);
                 Taro.navigateTo({ url: "/packages/login/pages/log/index" });
               }}
             >
-              <Text className='role-header'>未登录</Text>
-              <Text className='role-font'>{"点击去登录>>"}</Text>
+              <Text className="role-header">未登录</Text>
+              <Text className="role-font">{"点击去登录>>"}</Text>
             </View>
-            <Image src={doctor} className='img' />
+            <Image src={doctor} className="img" />
           </View>
-          <View className='gray-line'></View>
+          <View className="gray-line"></View>
         </>
       )}
     </View>
