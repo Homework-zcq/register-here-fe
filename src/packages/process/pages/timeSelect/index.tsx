@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { isNil, get, isEmpty } from "lodash";
+import { isNil, get, isEmpty, sortBy } from "lodash";
 import { View, Text } from "@tarojs/components";
 import Taro, { getCurrentInstance } from "@tarojs/taro";
 import { Dot, PageLoading } from "@/components";
@@ -29,7 +29,6 @@ export default function TimeSelect() {
 
   useMemo(async () => {
     getRenderInfo(doctorId, deptId).then((res) => {
-      console.log(res);
       setPlaces(res.dateTimeInfo);
       setDoctor(get(res, "doctorInfo"));
       setDept(get(res, "deptInfo"));
@@ -97,7 +96,7 @@ export default function TimeSelect() {
           </View>
           <View className='pick-date'>
             {!isNil(places) ? (
-              Object.entries(places).map((v, i) => {
+              sortBy(Object.entries(places), v => v[0]).map((v, i) => {
                 const isAvailable =
                   (v[1] as Array<any>)?.reduce(
                     (pre, cur) => pre.count + cur.count
