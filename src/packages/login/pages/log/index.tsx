@@ -72,7 +72,6 @@ export default function Login() {
         </View>
         <View className='input_little_box' style='border:0px'>
           <Input
-            type='safe-password'
             password
             placeholder='请输入账号密码'
             className='input'
