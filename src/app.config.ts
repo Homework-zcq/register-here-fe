@@ -10,6 +10,7 @@ export default defineAppConfig({
       root: "packages/login",
       pages: [
         "pages/log/index",
+        "pages/sign/index"
       ]
     },
     {

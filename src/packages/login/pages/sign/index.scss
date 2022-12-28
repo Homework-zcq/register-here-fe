@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+    padding-bottom: 80px;
+  
+    .icon {
+      width: 200px;
+      height: 200px;
+      margin-top: 80px;
+    }
+  
+    .input_box {
+      width: 100%;
+      height: 330px;
+      padding-left: 30px;
+      padding-right: 30px;
+      box-sizing: border-box;
+      background-color: #FFF;
+      margin-top: -300px;
+      border-radius: 40px;
+      
+      .input_little_box {
+        width: 100%;
+        height: 110px;
+        border-bottom: 1px solid rgb(236, 236, 236);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+  
+        .input {
+          font-size: 34px;
+          color: #000;
+        }
+      }
+    }
+  
+    .btn_group {
+      width: 100%;
+      margin-top: -260px;
+  
+      .weapp_login {
+        width: 100%;
+        height: 88px;
+        background: #07c160;
+        border-radius: 94px;
+        color: #fff;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .weapp {
+          width: 48px;
+          height: 48px;
+          margin-right: 16px;
+        }
+      }
+      .phone_login {
+        width: 100%;
+        height: 88px;
+        margin-top: 48px;
+        border-radius: 60px;
+        border: 1px solid #dcdcdc;
+      }
+    }
+  }
+  

@@ -28,30 +28,33 @@ export default function Login() {
       password: password,
     };
     // 调用接口, 登录
-    request.post("/api/auth/local", data).then((res) => {
-      console.log("=====log_res", res);
-      const tmp = res.data.user;
-      if (res.statusCode === 200 && tmp) {
-        const user: UserInfo = {
-          id: tmp.id ? tmp.id : "",
-          createdAt: tmp.createdAt ? tmp.createdAt : "",
-          updatedAt: tmp.updatedAt ? tmp.updatedAt : "",
-          name: tmp.username ? tmp.username : "",
-          avatar: tmp.avatar ? tmp.avatar : "",
-          role: tmp.u_role? tmp.u_role : "",
-        };
-        Taro.setStorageSync("user", user);
-        // 存储token，方便做用户校验
-        Taro.setStorageSync("token", res.data.jwt);
-      } else {
-        throw("get url error");
-      }
-      Taro.navigateBack();
-    }).catch((err) => {
-      Taro.showToast({ title: "登录失败！", icon: "none" });
-      console.log("=====log_err", err);
-      return;
-    });
+    request
+      .post("/api/auth/local", data)
+      .then((res) => {
+        console.log("=====log_res", res);
+        const tmp = res.data.user;
+        if (res.statusCode === 200 && tmp) {
+          const user: UserInfo = {
+            id: tmp.id ? tmp.id : "",
+            createdAt: tmp.createdAt ? tmp.createdAt : "",
+            updatedAt: tmp.updatedAt ? tmp.updatedAt : "",
+            name: tmp.username ? tmp.username : "",
+            avatar: tmp.avatar ? tmp.avatar : "",
+            role: tmp.u_role ? tmp.u_role : "",
+          };
+          Taro.setStorageSync("user", user);
+          // 存储token，方便做用户校验
+          Taro.setStorageSync("token", res.data.jwt);
+        } else {
+          throw "get url error";
+        }
+        Taro.navigateBack();
+      })
+      .catch((err) => {
+        Taro.showToast({ title: "登录失败！", icon: "none" });
+        console.log("=====log_err", err);
+        return;
+      });
   };
   return (
     <View className='container'>
@@ -84,7 +87,14 @@ export default function Login() {
         <Button className='weapp_login' onClick={login}>
           <Text>登录</Text>
         </Button>
-        <Button className='phone_login'>暂无账号，去注册</Button>
+        <Button
+          className='phone_login'
+          onClick={() =>
+            Taro.navigateTo({ url: "/packages/login/pages/sign/index" })
+          }
+        >
+          暂无账号，去注册
+        </Button>
       </View>
       <View className='footer'>
         {read ? (
