@@ -20,7 +20,12 @@ export default function HospitalHome() {
   const { campuseId }: any = getCurrentInstance().router?.params;
 
   const [hospital, setHospital] = useState<hospitalInfo>();
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState<{
+    attributes: {
+      campuses: { data: { id: number }[] };
+    };
+    id: number;
+  }>();
   const [campuseChoosed, setCampuseChoosed] = useState(0);
   const [modal, setModal] = useState(false);
   const [selector, setSelector] = useState<string[]>([]);
@@ -43,8 +48,8 @@ export default function HospitalHome() {
   });
   const getCampuses = () => {
     Taro.showLoading({
-      title: "加载中"
-    })
+      title: "加载中",
+    });
     const query = qs.stringify({
       populate: {
         hospital: {
@@ -56,7 +61,7 @@ export default function HospitalHome() {
       },
     });
     request.get(`/api/campuses?${query}`).then((res) => {
-      Taro.hideLoading()
+      Taro.hideLoading();
       setHospital(res.data.data[0].attributes.hospital.data);
       let t: any[] = [];
       const list =
@@ -73,6 +78,7 @@ export default function HospitalHome() {
   };
   const getFavorite = () => {
     const user = Taro.getStorageSync("user");
+    console.log(user.id, "=====userId");
     const _query = qs.stringify({
       populate: "*",
       filters: {
@@ -83,8 +89,46 @@ export default function HospitalHome() {
     });
     // 获取收藏医院
     request.get(`/api/favorite-hospitals?${_query}`).then((res) => {
-      setFavorites(res.data.data);
+      console.log(res.data);
+      setFavorites(res.data.data[0]);
     });
+  };
+  const likeCampuse = (id) => {
+    const idList: number[] = [];
+    const list = favorites?.attributes.campuses.data;
+    if (list)
+      for (let i = 0; i < list?.length; i++) {
+        idList.push(list[i].id);
+      }
+    if (idList.findIndex((val) => val == id) !== -1) {
+      Taro.showLoading({
+        title: "取消收藏中...",
+      });
+      idList.splice(
+        idList.findIndex((val) => val == id),
+        1
+      );
+    } else {
+      Taro.showLoading({
+        title: "收藏中...",
+      });
+      idList.push(id);
+    }
+    request
+      .put(`/api/favorite-hospitals/${favorites?.id}`, {
+        data: {
+          campuses: idList,
+        },
+      })
+      .then(() => {
+        Taro.hideLoading();
+        Taro.showToast({
+          title: "成功",
+          icon: "success",
+          duration: 1000,
+        });
+        getFavorite();
+      });
   };
   return (
     <>
@@ -103,7 +147,7 @@ export default function HospitalHome() {
             />
           </View>
           <View className="modal_low">
-            {campuses &&
+            {campuses.length > 0 &&
               campuses.map((val, index) => (
                 <View key={"phone" + val.id}>
                   {index != 0 && <View className="line"></View>}
@@ -207,10 +251,15 @@ export default function HospitalHome() {
                         </Text>
                         <Text className="campuse_distance">3.6km</Text>
                         <Image
+                          onClick={() => {
+                            likeCampuse(val.id);
+                          }}
                           src={
-                            favorites.findIndex((item: any) => {
-                              return item.id == val.id;
-                            }) == -1
+                            favorites?.attributes.campuses.data.findIndex(
+                              (item: any) => {
+                                return item.id == val.id;
+                              }
+                            ) == -1
                               ? star_no
                               : star
                           }
