@@ -28,6 +28,7 @@ export default function HospitalHome() {
   }>();
   const [campuseChoosed, setCampuseChoosed] = useState(0);
   const [modal, setModal] = useState(false);
+  const [userJudge, serUserJudge] = useState(false);
   const [selector, setSelector] = useState<string[]>([]);
   const [campuses, setCampuses] = useState<
     {
@@ -78,7 +79,10 @@ export default function HospitalHome() {
   };
   const getFavorite = () => {
     const user = Taro.getStorageSync("user");
-    console.log(user.id, "=====userId");
+    if (!user) {
+      serUserJudge(false);
+      return;
+    }
     const _query = qs.stringify({
       populate: "*",
       filters: {
@@ -89,7 +93,6 @@ export default function HospitalHome() {
     });
     // 获取收藏医院
     request.get(`/api/favorite-hospitals?${_query}`).then((res) => {
-      console.log(res.data);
       setFavorites(res.data.data[0]);
     });
   };
@@ -252,9 +255,18 @@ export default function HospitalHome() {
                         <Text className="campuse_distance">3.6km</Text>
                         <Image
                           onClick={() => {
+                            if (!userJudge) {
+                              Taro.showToast({
+                                title: "未登录",
+                                icon: "error",
+                                duration: 1000,
+                              });
+                              return;
+                            }
                             likeCampuse(val.id);
                           }}
                           src={
+                            !userJudge ||
                             favorites?.attributes.campuses.data.findIndex(
                               (item: any) => {
                                 return item.id == val.id;

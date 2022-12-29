@@ -34,11 +34,16 @@
       @include flex(row, flex-start, nowrap);
       align-items: center;
       margin-bottom: 32px;
-      
+
       .doctor-details {
         @include flex(column, flex-start, nowrap);
         flex: 1;
         width: 0;
+
+        .like_star {
+          width: 32px;
+          height: 32px;
+        }
 
         .level {
           @include flex(row, flex-start, nowrap);
@@ -72,7 +77,7 @@
         align-self: flex-start;
         margin-right: 12px;
       }
-      
+
       .desc {
         flex: 1;
       }
@@ -118,7 +123,7 @@
       .date {
         @include pingfang-font(#000000 , 26px, 400);
       }
-      
+
       .status {
         @include pingfang-font(#0038FF , 26px, 500);
       }
@@ -127,7 +132,7 @@
         @include pingfang-font(#5E5E5E , 26px, 500);
       }
     }
-  
+
     .picked {
       background-color: #C8DBFF;
     }
@@ -193,7 +198,7 @@
 
 .custom-color {
   color: #1989fa;
-  
+
   .taroify-loading__text {
     color: #1989fa;
   }

@@ -1,12 +1,16 @@
 import { useMemo, useState } from "react";
 import { isNil, get, isEmpty, sortBy } from "lodash";
-import { View, Text } from "@tarojs/components";
-import Taro, { getCurrentInstance } from "@tarojs/taro";
+import { View, Text, Image } from "@tarojs/components";
+import Taro, { getCurrentInstance, useLoad } from "@tarojs/taro";
 import { Dot, PageLoading } from "@/components";
 import { Avatar, Tag, Loading, Button, Empty, Popup } from "@taroify/core";
 import { getRenderInfo, getWeekday } from "./utils";
 import "./index.scss";
 import { roomChinese } from "@/utils/roomicon";
+import star from "@/assets/icon/star.png";
+import star_no from "@/assets/icon/star_no.png";
+import qs from "qs";
+import request from "@/services/request";
 
 interface currentPlaceInfo {
   date: string;
@@ -21,11 +25,18 @@ export default function TimeSelect() {
   const [doctor, setDoctor] = useState<any>({});
   const [dept, setDept] = useState<any>({});
   const [places, setPlaces] = useState<any>(null);
+  const [userJudge, serUserJudge] = useState(false);
   const [currentPlace, setCurrentPlace] = useState<currentPlaceInfo>({
     date: "",
     period_info: null,
     available: true,
   });
+  const [favorites, setFavorites] = useState<{
+    attributes: {
+      doctors: { data: { id: number }[] };
+    };
+    id: number;
+  }>();
 
   useMemo(async () => {
     getRenderInfo(doctorId, deptId).then((res) => {
@@ -35,7 +46,9 @@ export default function TimeSelect() {
       setLoading(false);
     });
   }, [doctorId]);
-
+  useLoad(() => {
+    getDoctors();
+  });
   const selectTime = (e) => {
     setCurrentPlace({
       date: e,
@@ -44,7 +57,62 @@ export default function TimeSelect() {
         get(places, e)?.reduce((pre, cur) => pre.count + cur.count) > 0,
     });
   };
+  // 获取收藏医生列表
+  const getDoctors = async () => {
+    const user = Taro.getStorageSync("user");
+    if (!user) {
+      serUserJudge(false);
+      return;
+    }
+    const _query = qs.stringify({
+      populate: "*",
+      filters: {
+        user: {
+          id: { $eq: user.id },
+        },
+      },
+    });
+    // 获取收藏医生
+    await request.get(`/api/favorite-doctors?${_query}`).then((res) => {
+      setFavorites(res.data.data[0]);
+    });
+  };
 
+  const likeDoctor = (id) => {
+    const idList: number[] = [];
+    const list = favorites?.attributes.doctors.data;
+    if (list)
+      for (let i = 0; i < list?.length; i++) {
+        idList.push(list[i].id);
+      }
+    const index = idList.findIndex((val) => val == id);
+    if (index !== -1) {
+      Taro.showLoading({
+        title: "取消收藏中...",
+      });
+      idList.splice(index, 1);
+    } else {
+      Taro.showLoading({
+        title: "收藏中...",
+      });
+      idList.push(id);
+    }
+    request
+      .put(`/api/favorite-doctors/${favorites?.id}`, {
+        data: {
+          doctors: idList,
+        },
+      })
+      .then(() => {
+        Taro.hideLoading();
+        Taro.showToast({
+          title: "成功",
+          icon: "success",
+          duration: 1000,
+        });
+        getDoctors();
+      });
+  };
   return (
     <View className="page-time-select">
       {loading ? (
@@ -59,7 +127,33 @@ export default function TimeSelect() {
                 style={{ marginRight: "12px" }}
               />
               <View className="doctor-details">
-                <Text className="name-font">{doctor.name}</Text>
+                <View className="level">
+                  <Text className="name-font">{doctor.name}</Text>
+                  <Image
+                    onClick={() => {
+                      if (!userJudge) {
+                        Taro.showToast({
+                          title: "未登录",
+                          icon: "error",
+                          duration: 1000,
+                        });
+                        return;
+                      }
+                      likeDoctor(doctorId);
+                    }}
+                    src={
+                      !userJudge ||
+                      favorites?.attributes.doctors.data.findIndex(
+                        (item: any) => {
+                          return item.id == doctorId;
+                        }
+                      ) == -1
+                        ? star_no
+                        : star
+                    }
+                    className="like_star"
+                  />
+                </View>
                 <View className="level">
                   <Text className="level-font">{doctor.role}</Text>
                   <Text className="link-font" onClick={() => setOpen(true)}>
@@ -153,6 +247,14 @@ export default function TimeSelect() {
                         shape="round"
                         disabled={!v.count}
                         onClick={() => {
+                          if (!userJudge) {
+                            Taro.showToast({
+                              title: "未登录",
+                              icon: "error",
+                              duration: 1000,
+                            });
+                            return;
+                          }
                           Taro.navigateTo({
                             url: `/packages/process/pages/registerDetail/index?placeId=${v.id}`,
                           });
