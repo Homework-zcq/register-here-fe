@@ -28,7 +28,7 @@ export default function HospitalHome() {
   }>();
   const [campuseChoosed, setCampuseChoosed] = useState(0);
   const [modal, setModal] = useState(false);
-  const [userJudge, serUserJudge] = useState(false);
+  const [userJudge, setUserJudge] = useState(false);
   const [selector, setSelector] = useState<string[]>([]);
   const [campuses, setCampuses] = useState<
     {
@@ -80,9 +80,10 @@ export default function HospitalHome() {
   const getFavorite = () => {
     const user = Taro.getStorageSync("user");
     if (!user) {
-      serUserJudge(false);
+      setUserJudge(false);
       return;
     }
+    setUserJudge(true)
     const _query = qs.stringify({
       populate: "*",
       filters: {

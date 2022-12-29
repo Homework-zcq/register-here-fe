@@ -25,7 +25,7 @@ export default function TimeSelect() {
   const [doctor, setDoctor] = useState<any>({});
   const [dept, setDept] = useState<any>({});
   const [places, setPlaces] = useState<any>(null);
-  const [userJudge, serUserJudge] = useState(false);
+  const [userJudge, setUserJudge] = useState(false);
   const [currentPlace, setCurrentPlace] = useState<currentPlaceInfo>({
     date: "",
     period_info: null,
@@ -61,9 +61,10 @@ export default function TimeSelect() {
   const getDoctors = async () => {
     const user = Taro.getStorageSync("user");
     if (!user) {
-      serUserJudge(false);
+      setUserJudge(false);
       return;
     }
+    setUserJudge(true)
     const _query = qs.stringify({
       populate: "*",
       filters: {
