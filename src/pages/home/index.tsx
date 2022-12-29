@@ -1,7 +1,12 @@
-import { DoctorInfo, RegisterInfo } from "@/services/types";
+import {
+  DoctorInfo,
+  registerInfo,
+  RegisterInfo,
+  Visitting,
+} from "@/services/types";
 import { View, Text, Image, Swiper, SwiperItem } from "@tarojs/components";
 import Taro, { useDidShow } from "@tarojs/taro";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import hint from "@/assets/img/hint.png";
 import banner1 from "@/assets/img/banner1.png";
 import banner2 from "@/assets/img/banner2.png";
@@ -11,26 +16,113 @@ import silver from "@/assets/icon/silver.png";
 import bronze from "@/assets/icon/bronze.png";
 import ask from "@/assets/img/home_ask.png";
 import "./index.scss";
+import request from "@/services/request";
+import qs from "qs";
 
 export default function Home() {
-  const [registerInfo, setRegisterInfo] = useState<RegisterInfo | null>({
-    id: "",
-    createdAt: "2022-12-09",
-    updatedAt: "2022-12-09",
-    date: "2022-12-15",
-    timePart: "上午",
-  });
+  const [orderInfo, setOrderInfo] = useState<{
+    attributes: {
+      cancel_time: string;
+      certificate: string;
+      createdAt: string;
+      place: { data: registerInfo };
+      publishedAt: string;
+      register_time: string;
+      status: string;
+      updatedAt: string;
+      visitting: { data: Visitting };
+    };
+    id: number;
+  } | null>();
   const [welcome, setWelcome] = useState("Hi, 你好～");
   const [avatar, setAvatar] = useState("");
   const [register, setRegister] = useState("");
   const [doctorList, setDoctorList] = useState<Array<DoctorInfo> | null>(null);
-
+  const getRegister = (_userId) => {
+    const _query = qs.stringify({
+      populate: {
+        place: {
+          populate: {
+            department: {
+              populate: {
+                campus: {
+                  populate: "*",
+                },
+              },
+            },
+            doctor: {
+              populate: "*",
+            },
+          },
+        },
+        visitting: {
+          populate: "*",
+        },
+      },
+      filters: {
+        user: {
+          id: { $eq: _userId },
+        },
+        status: {
+          $eq: "STAY",
+        },
+      },
+    });
+    request.get(`/api/orders?${_query}`).then((res) => {
+      const list = res.data.data;
+      list.sort(function (
+        a: {
+          attributes: {
+            cancel_time: string;
+            certificate: string;
+            createdAt: string;
+            place: { data: registerInfo };
+            publishedAt: string;
+            register_time: string;
+            status: string;
+            updatedAt: string;
+            visitting: { data: Visitting };
+          };
+          id: number;
+        },
+        b: {
+          attributes: {
+            cancel_time: string;
+            certificate: string;
+            createdAt: string;
+            place: { data: registerInfo };
+            publishedAt: string;
+            register_time: string;
+            status: string;
+            updatedAt: string;
+            visitting: { data: Visitting };
+          };
+          id: number;
+        }
+      ) {
+        const date1 = new Date(a.attributes.place.data.attributes.date);
+        const date2 = new Date(b.attributes.place.data.attributes.date);
+        if (date1 == date2) {
+          return a.attributes.place.data.attributes.time_period == "pm"
+            ? 1
+            : -1;
+        } else {
+          return date1 > date2 ? 1 : -1;
+        }
+      });
+      console.log(list);
+      setOrderInfo(list[0]);
+    });
+  };
   useDidShow(() => {
     // 获取用户信息，存头像字段
     try {
       const user = Taro.getStorageSync("user");
       if (user.avatar != null) {
         setAvatar(user.avatar);
+      }
+      if (user.id != null) {
+        getRegister(user.id);
       }
     } catch (err) {
       console.log("====err", err);
@@ -44,34 +136,6 @@ export default function Home() {
       case hour >= 13 && hour <= 18:
         setWelcome("Hi, 下午好～");
         break;
-    }
-    // 设置预约提示导语
-    if (
-      new Date().getFullYear() === Number(registerInfo?.date.slice(0, 4)) &&
-      new Date().getMonth() + 1 === Number(registerInfo?.date.slice(5, 7)) &&
-      -new Date().getDate() + Number(registerInfo?.date.slice(8, 10)) <= 1 &&
-      -new Date().getDate() + Number(registerInfo?.date.slice(8, 10)) >= 0
-    ) {
-      console.log(1);
-      switch (-new Date().getDate() + Number(registerInfo?.date.slice(8, 10))) {
-        case 0:
-          setRegister("您在今日" + registerInfo?.timePart + "有预约 >");
-          break;
-        case 1:
-          setRegister("您在明日" + registerInfo?.timePart + "有预约 >");
-          break;
-      }
-    } else if (
-      new Date().getFullYear() === Number(registerInfo?.date.slice(0, 4)) &&
-      new Date().getMonth() + 1 === Number(registerInfo?.date.slice(5, 7)) &&
-      -new Date().getDate() + Number(registerInfo?.date.slice(8, 10)) > 1
-    ) {
-      setRegister(
-        "您在" +
-          registerInfo?.date.slice(5) +
-          registerInfo?.timePart +
-          "有预约 >"
-      );
     }
     // 设置热门医生
     setDoctorList([
@@ -104,6 +168,80 @@ export default function Home() {
       },
     ]);
   });
+  useEffect(() => {
+    if (orderInfo != null) {
+      // 设置预约提示导语
+      if (
+        new Date().getFullYear() ===
+          Number(
+            orderInfo?.attributes.place.data.attributes.date.slice(0, 4)
+          ) &&
+        new Date().getMonth() + 1 ===
+          Number(
+            orderInfo?.attributes.place.data.attributes?.date.slice(5, 7)
+          ) &&
+        -new Date().getDate() +
+          Number(
+            orderInfo?.attributes.place.data.attributes?.date.slice(8, 10)
+          ) <=
+          1 &&
+        -new Date().getDate() +
+          Number(
+            orderInfo?.attributes.place.data.attributes?.date.slice(8, 10)
+          ) >=
+          0
+      ) {
+        console.log(1);
+        switch (
+          -new Date().getDate() +
+          Number(orderInfo?.attributes.place.data.attributes?.date.slice(8, 10))
+        ) {
+          case 0:
+            setRegister(
+              "您在今日" +
+                (orderInfo?.attributes.place.data.attributes.time_period == "am"
+                  ? "上午"
+                  : "下午") +
+                "有预约 >"
+            );
+            break;
+          case 1:
+            setRegister(
+              "您在明日" +
+                (orderInfo?.attributes.place.data.attributes.time_period == "am"
+                  ? "上午"
+                  : "下午") +
+                "有预约 >"
+            );
+            break;
+        }
+      } else if (
+        new Date().getFullYear() ===
+          Number(
+            orderInfo?.attributes.place.data.attributes.date.slice(0, 4)
+          ) &&
+        new Date().getMonth() + 1 ===
+          Number(
+            orderInfo?.attributes.place.data.attributes.date.slice(5, 7)
+          ) &&
+        -new Date().getDate() +
+          Number(
+            orderInfo?.attributes.place.data.attributes.date.slice(8, 10)
+          ) >
+          1
+      ) {
+        console.log(orderInfo?.attributes.place.data.attributes.date.slice(5));
+        setRegister(
+          "您在" +
+            orderInfo?.attributes.place.data.attributes.date.slice(5) +
+            (orderInfo?.attributes.place.data.attributes.time_period == "am"
+              ? "上午"
+              : "下午") +
+            "有预约 >"
+        );
+      }
+    }
+  }, [orderInfo]);
 
   return (
     <View className="index">
@@ -124,7 +262,14 @@ export default function Home() {
       </View>
       {/* 预约栏 */}
       {register != "" && (
-        <View className="register-hint-bar">
+        <View
+          className="register-hint-bar"
+          onClick={() => {
+            Taro.navigateTo({
+              url: `/packages/mine/pages/orderDetail/index?orderId=${orderInfo?.id}`,
+            });
+          }}
+        >
           <Image src={hint} className="register-hint-img" />
           <Text className="register-hint-font">{register}</Text>
         </View>
