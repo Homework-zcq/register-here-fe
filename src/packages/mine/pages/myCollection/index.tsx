@@ -45,11 +45,9 @@ export default function Collection() {
     });
     // 获取收藏医院
     await request.get(`/api/favorite-hospitals?${_query}`).then((res) => {
-      console.log("====hos", res.data.data[0].attributes.campuses.data);
       let tmpList: Array<CollectedHspt> | null = null;
       // 数据处理
       res.data.data[0].attributes.campuses.data.map((val) => {
-        console.log(val.attributes.hospital.data.attributes.name);
         if (tmpList) {
           tmpList = [
             ...tmpList,
@@ -105,7 +103,6 @@ export default function Collection() {
     });
     // 获取收藏医生
     await request.get(`/api/favorite-doctors?${_query}`).then((res) => {
-      console.log(res);
       if (res.data.data[0].attributes.doctors.data) {
         setDoctorList(res.data.data[0].attributes.doctors.data);
       }

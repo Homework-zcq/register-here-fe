@@ -31,7 +31,6 @@ export default function Login() {
     request
       .post("/api/auth/local", data)
       .then((res) => {
-        console.log("=====log_res", res);
         const tmp = res.data.user;
         if (res.statusCode === 200 && tmp) {
           const user: UserInfo = {

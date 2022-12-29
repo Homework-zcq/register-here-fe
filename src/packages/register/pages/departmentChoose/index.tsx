@@ -50,7 +50,6 @@ export default function departmentChoose() {
       },
     });
     request.get(`/api/departments?${query}`).then((res) => {
-      console.log(res.data.data);
       const list: {
         attributes: {
           category: string;

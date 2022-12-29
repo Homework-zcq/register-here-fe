@@ -16,7 +16,6 @@ export default function VisittingDetail() {
 
   useDidShow(() => {
     getVisitting();
-    console.log("=======", isEmpty(visitting));
   });
 
   // 获取就诊人信息

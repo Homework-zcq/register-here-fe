@@ -93,7 +93,6 @@ export default function registerConfirm() {
       },
     });
     request.get(`/api/places?${_query}`).then((res) => {
-      console.log("====getVL_res", res.data.data);
       setRegister(res.data.data[0]);
     });
   };
@@ -108,7 +107,6 @@ export default function registerConfirm() {
       },
     });
     request.get(`/api/visittings?${_query}`).then((res) => {
-      console.log("====getVL_res", res.data.data);
       setVisittingList(res.data.data);
       setCheckId(res.data.data[0].id);
     });

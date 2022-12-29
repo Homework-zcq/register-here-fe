@@ -16,7 +16,6 @@ export default function SelectHospital() {
 
   useMemo(async () => {
     getRenderInfo().then((res) => {
-      console.log(res);
       setHospitals(res);
     });
   }, [id]);

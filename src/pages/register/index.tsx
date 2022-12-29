@@ -20,7 +20,6 @@ export default function Index() {
   });
   const getCampuses = () => {
     request.get("/api/campuses?populate=hospital").then((res) => {
-      console.log(res.data.data);
       setCampuses(res.data.data);
     });
   };

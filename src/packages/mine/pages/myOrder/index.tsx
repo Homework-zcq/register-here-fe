@@ -83,7 +83,6 @@ export default function MyOrder() {
       });
       // 获取订单列表
       request.get(`/api/orders?${_query}`).then((res) => {
-        console.log(res);
         Taro.hideLoading();
         setOrders(res.data.data);
       });
@@ -118,7 +117,6 @@ export default function MyOrder() {
         },
       });
       request.get(`/api/orders?${_query}`).then((res) => {
-        console.log(res);
         Taro.hideLoading();
         setOrders(res.data.data);
       });

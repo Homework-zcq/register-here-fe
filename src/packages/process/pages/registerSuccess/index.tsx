@@ -53,7 +53,6 @@ export default function registerSuccess() {
       },
     });
     request.get(`/api/orders?${_query}`).then((res) => {
-      console.log("====getVL_res", res.data.data);
       setRegisterInfo(res.data.data[0].attributes.place.data);
       setVisittingInfo(res.data.data[0].attributes.visitting.data);
     });

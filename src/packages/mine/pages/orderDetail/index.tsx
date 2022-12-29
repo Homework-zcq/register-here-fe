@@ -56,7 +56,6 @@ export default function OrderDetail() {
       },
     });
     request.get(`/api/orders?${_query}`).then((res) => {
-      console.log("====getVL_res", res.data.data);
       setOrder(res.data.data[0]);
     });
   };
@@ -220,7 +219,6 @@ export default function OrderDetail() {
               confirmColor: "#DE3A3A",
               success: function (res) {
                 if (res.confirm) {
-                  console.log("用户点击确定");
                   cancelOrder();
                 } else if (res.cancel) {
                   console.log("用户点击取消");

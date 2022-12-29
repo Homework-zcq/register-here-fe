@@ -110,7 +110,6 @@ export default function Home() {
           return date1 > date2 ? 1 : -1;
         }
       });
-      console.log(list);
       setOrderInfo(list[0]);
     });
   };
@@ -191,7 +190,6 @@ export default function Home() {
           ) >=
           0
       ) {
-        console.log(1);
         switch (
           -new Date().getDate() +
           Number(orderInfo?.attributes.place.data.attributes?.date.slice(8, 10))
@@ -230,7 +228,6 @@ export default function Home() {
           ) >
           1
       ) {
-        console.log(orderInfo?.attributes.place.data.attributes.date.slice(5));
         setRegister(
           "您在" +
             orderInfo?.attributes.place.data.attributes.date.slice(5) +

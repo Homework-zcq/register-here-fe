@@ -34,7 +34,6 @@ export default function Visittings() {
       },
     });
     request.get(`/api/visittings?${_query}`).then((res) => {
-      console.log("====getVL_res", res.data.data);
       setVisittingList(res.data.data);
     });
   };

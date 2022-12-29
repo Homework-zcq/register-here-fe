@@ -72,7 +72,6 @@ export default function HospitalHome() {
         if (res.data.data[0].attributes.name == list[i].attributes.name)
           setCampuseChoosed(i);
       }
-      console.log(list);
       setSelector(t);
       setCampuses(list);
     });
