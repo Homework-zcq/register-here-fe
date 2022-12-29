@@ -32,7 +32,7 @@ export const getRenderInfo = async (docId: string, deptId: string) => {
       deptInfo: get(res, "data.data[0].attributes.department.data.attributes"),
       dateTimeInfo: groupBy(
         res.data.data.map((v: { attributes: any; id: any; }) => ({
-          ...pick(v.attributes, ["count", "date", "time_period"]),
+          ...pick(v.attributes, ["count", "date", "time_period", "price"]),
           id: v.id,
         })),
         (v) => v.date

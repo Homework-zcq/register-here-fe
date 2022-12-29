@@ -235,7 +235,7 @@ export default function TimeSelect() {
                         style={{ marginRight: "12px" }}
                         className="price-font"
                       >
-                        ¥50
+                        ¥{v.price}
                       </Text>
                       <Button
                         size="mini"
